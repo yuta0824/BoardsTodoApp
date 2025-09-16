@@ -63,6 +63,9 @@ group :development do
 
   # Convert ERB templates to HAML [https://github.com/dhl/erb2haml]
   gem 'erb2haml'
+
+  # Annotate models and routes with schema information [https://github.com/ctran/annotate_models]
+  gem 'annotate'
 end
 
 group :test do
