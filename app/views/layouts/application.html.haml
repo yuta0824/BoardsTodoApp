@@ -16,4 +16,11 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
   %body
+    %header
+      = link_to root_path do
+        %h1 Boards Todo App
+      - if flash.present?
+        .flash
+          - flash.each do |key, message|
+            %div{:class => key}= message
     = yield
