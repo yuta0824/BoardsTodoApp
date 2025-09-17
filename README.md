@@ -23,10 +23,10 @@
 ### Backend
 
 ![Ruby on Rails](https://skillicons.dev/icons?i=rails)
-![SQLite](https://skillicons.dev/icons?i=sqlite)
+![PostgreSQL](https://skillicons.dev/icons?i=postgresql)
 
 - Ruby on Rails
-- SQLite
+- PostgreSQL
 
 ### Frontend
 
