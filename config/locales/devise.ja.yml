@@ -25,6 +25,14 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: メールアドレスを入力してください
+            password:
+              blank: パスワードを入力してください
     models:
       user: ユーザ
   devise:
@@ -137,6 +145,7 @@ ja:
       expired: の有効期限が切れました。新しくリクエストしてください。
       not_found: は見つかりませんでした。
       not_locked: は凍結されていません。
+      blank: を入力してください。
       not_saved:
         one: エラーが発生したため %{resource} は保存されませんでした。
         other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"

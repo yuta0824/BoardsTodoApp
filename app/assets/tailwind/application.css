@@ -1,1 +1,27 @@
 @import "tailwindcss";
+
+:root {
+  --header-heignt: 74px;
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-block: 2rem;
+  padding-inline: 2rem;
+}
+
+@utility h-header {
+  height: var(--header-heignt);
+}
+
+@utility min-h-header {
+  min-height: var(--header-heignt);
+}
+
+@utility mt-header {
+  margin-top: var(--header-heignt);
+}
+
+@utility h-minus-header {
+  height: calc(100vh - var(--header-heignt));
+}
