@@ -1,0 +1,31 @@
+<% key = local_assigns.fetch(:key, nil).to_s.presence || 'notice' %>
+<% message = local_assigns.fetch(:message, nil).presence %>
+<% return if message.blank? %>
+
+<% accent_class = case key
+                  when 'success', 'notice'
+                    'bg-emerald-500'
+                  when 'error', 'alert'
+                    'bg-red-500'
+                  else
+                    'bg-slate-500'
+                  end %>
+
+<div class="w-full text-white fade-out <%= accent_class %>" data-controller="flash">
+    <div class="container flex items-center justify-between px-4 py-4 min-h-header mx-auto">
+        <div class="flex items-center">
+            <svg viewBox="0 0 40 40" class="w-6 h-6 fill-current flex-shrink-0">
+                <path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM21.6667 28.3333H18.3334V25H21.6667V28.3333ZM21.6667 21.6666H18.3334V11.6666H21.6667V21.6666Z">
+                </path>
+            </svg>
+
+            <p class="mx-3"><%= message %></p>
+        </div>
+
+        <button id="js-alert-button" class="p-1 transition-colors duration-300 transform rounded-md cursor-pointer" data-action="click->flash#flashMessageClose">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 18L18 6M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button>
+    </div>
+</div>
