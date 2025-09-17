@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --header-heignt: 74px;
+  --header-height: 74px;
 }
 
 @utility container {
@@ -11,17 +11,17 @@
 }
 
 @utility h-header {
-  height: var(--header-heignt);
+  height: var(--header-height);
 }
 
 @utility min-h-header {
-  min-height: var(--header-heignt);
+  min-height: var(--header-height);
 }
 
 @utility mt-header {
-  margin-top: var(--header-heignt);
+  margin-top: var(--header-height);
 }
 
 @utility h-minus-header {
-  height: calc(100vh - var(--header-heignt));
+  height: calc(100vh - var(--header-height));
 }
