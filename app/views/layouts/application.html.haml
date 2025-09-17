@@ -16,4 +16,19 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
   %body
-    = yield
+    %header.px-4.border-b.border-gray-200.flex.items-center.justify-between.h-header.fixed.top-0.w-full
+      = link_to root_path do
+        %h1 Boards Todo App
+      .flex.gap-4.w-fit.items-center
+        - if user_signed_in?
+          = image_tag "avatar.svg", class: 'size-10 rounded-full border border-white/50 shadow-sm'
+          = link_to "Sign Out", destroy_user_session_path, data: {turbo_method: 'delete'} , class: "px-6 py-2 text-sm font-medium tracking-wide text-blue-500 capitalize transition-colors duration-300 transform border rounded-lg hover:bg-blue-50 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+        - else
+          = link_to "Sign In", new_user_session_path, class: "px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+    %main.mt-header.h-minus-header.bg-gray-100
+      - if flash.present?
+        .flash
+          - flash.each do |key, message|
+            = render "commons/flash", key:, message:
+      .container
+        = yield

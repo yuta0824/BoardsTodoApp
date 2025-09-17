@@ -1,1 +1,27 @@
 @import "tailwindcss";
+
+:root {
+  --header-height: 74px;
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-block: 2rem;
+  padding-inline: 2rem;
+}
+
+@utility h-header {
+  height: var(--header-height);
+}
+
+@utility min-h-header {
+  min-height: var(--header-height);
+}
+
+@utility mt-header {
+  margin-top: var(--header-height);
+}
+
+@utility h-minus-header {
+  height: calc(100vh - var(--header-height));
+}

@@ -1,0 +1,5 @@
+- if resource.errors.any?
+  #error_explanation{"data-turbo-cache" => "false"}
+    %ul.mt-4
+      - resource.errors.full_messages.each do |message|
+        %li.text-sm.text-red-600= "※ #{message}"
