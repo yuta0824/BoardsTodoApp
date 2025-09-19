@@ -26,7 +26,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   def avatar_image
-    self.avatar&.attached? ? avatar : "avatar.svg"
+    self.avatar&.attached? ? avatar : 'avatar.svg'
   end
 
 end
