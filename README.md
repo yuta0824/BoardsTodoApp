@@ -8,6 +8,7 @@
 
 - ユーザー機能
   - ユーザーにはログイン・ログアウト状態がある
+  - ユーザーはプロフィール名とアイコンを設定できる
 - ボード機能
   - ユーザーに紐づくボードを作成できる
   - ボードにはタイトル・概要がある
@@ -51,7 +52,7 @@
 
 | モデル名 | 用途                               | リレーション                                                |
 | -------- | ---------------------------------- | ----------------------------------------------------------- |
-| User     | ログイン・ログアウト機能           | has_many :boards<br>has_many :tasks<br>has_many :comments   |
+| User     | ログイン・ログアウト・プロフィール管理 | has_many :boards<br>has_many :tasks<br>has_many :comments<br>has_one_attached :avatar |
 | Board    | ユーザーが作成するタスク管理ボード | belongs_to :user<br>has_many :tasks                         |
 | Task     | ボードに紐づくタスク               | belongs_to :user<br>belongs_to :board<br>has_many :comments |
 | Comment  | タスクに対するコメント             | belongs_to :user<br>belongs_to :task                        |
