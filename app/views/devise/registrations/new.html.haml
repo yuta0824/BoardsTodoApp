@@ -6,6 +6,9 @@
 
     = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
       .w-full.mt-4
+        = f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Your Name", "aria-label": "Your Name", class: "block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg focus:border-blue-400-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+
+      .w-full.mt-4
         = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email Address", "aria-label": "Email Address", class: "block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg focus:border-blue-400-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
 
       .w-full.mt-4
