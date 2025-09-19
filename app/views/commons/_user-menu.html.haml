@@ -1,0 +1,26 @@
+%button.cursor-pointer.relative.flex.items-center.p-2.text-sm.text-gray-600.bg-white.border.border-transparent.rounded-md.focus:border-blue-500.focus:ring-opacity-40.focus:ring-blue-300.focus:ring.focus:outline-none{class: "hover:[&>*]:opacity-100 hover:[&>*]:visible focus-within:[&>*]:opacity-100 focus-within:[&>*]:visible"}
+  =image_tag "icon_profile.svg", class:"w-5 h-5 mx-1"
+  %span.mx-1 #{current_user.name}
+  .absolute.top-full.right-0.z-20.w-fit.py-2.overflow-hidden.origin-top-right.bg-white.rounded-md.shadow-xl.opacity-0.invisible.transition-opacity.delay-100
+    .flex.items-center.p-3.-mt-2.gap-2.text-sm.text-gray-600.transition-colors.duration-300
+      = image_tag current_user.avatar_image, class: "flex-shrink-0 rounded-full size-8"
+      .mx-1
+        %p.text-left.text-sm.font-semibold.text-gray-700 #{current_user.name}
+        %p.text-sm.text-gray-500 #{current_user.email}
+    %hr.border-gray-200
+    =link_to edit_user_registration_path do
+      .flex.items-center.p-3.text-sm.text-gray-600.capitalize.transition-colors.duration-300.transform.hover:bg-gray-100
+        =image_tag "icon_profile.svg", class:"w-5 h-5 mx-1"
+        %span.mx-1
+          Edit Profile
+    =link_to destroy_user_session_path, data: { turbo_confirm: "ログアウトしますか？",turbo_method: 'delete'} do
+      .flex.items-center.p-3.text-sm.text-gray-600.capitalize.transition-colors.duration-300.transform.hover:bg-gray-100
+        =image_tag "icon_sign-out.svg", class:"w-5 h-5 mx-1"
+        %span.mx-1
+          Log Out
+    %hr.border-gray-200
+    = link_to registration_path(current_user), data: { turbo_confirm: "本当に削除しますか?", turbo_method: :delete } do
+      .flex.items-center.p-3.text-sm.text-gray-600.capitalize.transition-colors.duration-300.transform.hover:bg-gray-100
+        =image_tag "icon_delete.svg", class:"w-5 h-5 mx-1"
+        %span.mx-1
+          Delete account
