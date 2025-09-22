@@ -1,0 +1,20 @@
+.w-full.max-w-sm.mx-auto.overflow-hidden.bg-white.rounded-lg.shadow-md
+  .px-6.py-6
+    %h2.mt-3.text-xl.font-medium.text-center.text-gray-600 New Board
+    - if @board.errors.any?
+      %div.bg-red-100.border.border-red-400.text-red-700.px-4.py-3.rounded.my-4
+        %ul
+          - @board.errors.full_messages.each do |message|
+            %li= message
+
+    = form_with(model: @board, local: true, data: { turbo: false }) do |f|
+      .w-full.mt-4
+        %label{ for: "name", class: "block text-sm text-gray-500" }
+          Name
+        = f.text_field :name, class: "block mt-2 w-full placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
+      .w-full.mt-4
+        %label{ for: "description", class: "block text-sm text-gray-500" }
+          Description
+        = f.text_area :description, class: "block mt-2 w-full placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
+      .flex.items-center.justify-center.mt-4
+        = f.submit "Save", class: "px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
