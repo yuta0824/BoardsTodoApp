@@ -24,6 +24,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :avatar
+  has_many :boards
 
   def avatar_image
     self.avatar&.attached? ? avatar : 'avatar.svg'
