@@ -12,7 +12,7 @@ class BoardsController < ApplicationController
     @board = current_user.boards.build(board_params)
 
     if @board.save
-      redirect_to board_path(@board), notice: "ボードが作成されました"
+      redirect_to board_path(@board), notice: 'ボードが作成されました'
     else
       render :new
     end
