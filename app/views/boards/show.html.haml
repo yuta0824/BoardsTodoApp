@@ -1,5 +1,2 @@
--# TODO: showの見た目を調整
-%h2.text-lg.font-bold Name
-=@board.name
-%h2.text-lg.font-bold Description
-=@board.description
+%div.grid.grid-cols-1.gap-6.p-6.bg-white.shadow-lg.rounded-lg
+    =render 'commons/board-card', board: @board, show_read_more: false

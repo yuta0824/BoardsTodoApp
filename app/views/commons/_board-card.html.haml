@@ -19,7 +19,8 @@
                 Delete
   %p.mt-2.text-gray-600 #{board.description}
   .flex.gap-2.items-center.justify-between
-    =link_to "Read More", board_path(board.id), class:"text-sm font-medium text-blue-600"
+    - if local_assigns[:show_read_more] != false
+      =link_to "Read More", board_path(board.id), class:"text-sm font-medium text-blue-600"
     .flex.items-center.gap-2
       =image_tag board.user.avatar_image, class: "fles-shrink-0 size-8 rounded-full"
       %p.font-bold.text-gray-700 #{board.user.name}
