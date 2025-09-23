@@ -16,7 +16,7 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
   %body
-    %header.px-4.border-b.border-gray-200.flex.items-center.justify-between.h-header.fixed.top-0.w-full
+    %header.px-4.border-b.border-gray-200.flex.items-center.justify-between.h-header.fixed.top-0.w-full.bg-white.z-100
       = link_to root_path do
         %h1 Boards Todo App
       - if user_signed_in?
