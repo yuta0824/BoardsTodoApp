@@ -38,6 +38,10 @@ class BoardsController < ApplicationController
   end
 
   def destroy
+    @board = current_user.boards.find(params[:id])
+    @board.destroy!
+    flash[:success] = '削除しました。'
+    redirect_to :root
   end
 
   private

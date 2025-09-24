@@ -10,8 +10,7 @@
               =image_tag "icon_write.svg", class:"w-5 h-5 mx-1"
               %span.mx-1
                 Edit
-          -# TODO: 削除機能を実装
-          = link_to do
+          = link_to board_path(board.id), data: { turbo_confirm: "この操作は取り消せません。本当に削除しますか？",turbo_method: 'delete'} do
             .flex.items-center.p-3.text-sm.text-gray-600.capitalize.transition-colors.duration-300.transform.hover:bg-gray-100
               =image_tag "icon_delete.svg", class:"w-5 h-5 mx-1 flex-shrink-0"
               %p.mx-1.flex-1
