@@ -25,6 +25,7 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
   has_many :boards
+  has_many :tasks, dependent: :destroy
 
   def avatar_image
     self.avatar&.attached? ? avatar : 'avatar.svg'
