@@ -15,7 +15,7 @@ class BoardsController < ApplicationController
     if @board.save
       redirect_to board_path(@board), notice: 'ボードが作成されました'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -24,9 +24,17 @@ class BoardsController < ApplicationController
   end
 
   def edit
+    @board = current_user.boards.find(params[:id])
   end
 
   def update
+    @board = current_user.boards.find(params[:id])
+
+    if @board.update(board_params)
+      redirect_to board_path(@board), notice: 'ボードが更新されました'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
