@@ -2,12 +2,12 @@ class TasksController < ApplicationController
     before_action :authenticate_user!, except: [:show]
 
     def new
-        @board = current_user.boards.find(params[:board_id])
-        @task = @board.tasks.build
+        @board = Board.find(params[:board_id])
+        @task = current_user.tasks.build
     end
 
     def create
-        @board = current_user.boards.find(params[:board_id])
+        @board = Board.find(params[:board_id])
         @task = current_user.tasks.build(task_params.merge(board: @board))
 
         if @task.save
