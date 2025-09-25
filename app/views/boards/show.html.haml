@@ -1,2 +1,3 @@
 %div.grid.grid-cols-1.gap-6.p-6.bg-white.shadow-lg.rounded-lg
     =render 'commons/board-card', board: @board, show_read_more: false
+    =link_to "Add new Task", new_board_task_path(@board)
