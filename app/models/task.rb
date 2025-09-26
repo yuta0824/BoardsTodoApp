@@ -22,6 +22,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Task < ApplicationRecord
+  has_one_attached :thumbnail
   belongs_to :user
   belongs_to :board
   validates :name, presence: true
