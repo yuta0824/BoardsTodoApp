@@ -5,7 +5,7 @@
     - if task.due_date
       .text-xs 締切：#{task.due_date}
     -if user_signed_in? && task.user == current_user
-      %button.ml-auto.cursor-pointer.z-1.relative.focus:border-blue-500.focus:ring-opacity-40.focus:ring-blue-300.focus:ring.focus:outline-none{class: "hover:[&>*]:opacity-100 hover:[&>*]:visible focus-within:[&>*]:opacity-100 focus-within:[&>*]:visible"}
+      %button.ml-auto.cursor-pointer.relative.focus:border-blue-500.focus:ring-opacity-40.focus:ring-blue-300.focus:ring.focus:outline-none{class: "hover:[&>*]:opacity-100 hover:[&>*]:visible focus-within:[&>*]:opacity-100 focus-within:[&>*]:visible"}
         %span.text-gray-600.tracking-tighter ・・・
         .absolute.w-fit.top-full.right-0.z-10.w-30.bg-white.rounded-md.shadow-xl.opacity-0.invisible.transition-opacity.delay-100
           -# TODO: link先の実装
