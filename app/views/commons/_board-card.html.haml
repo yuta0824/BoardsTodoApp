@@ -2,7 +2,7 @@
   .flex.items-center.justify-between.gap-3
     %p.text-xl.font-bold.text-gray-700 #{board.name}
     -if user_signed_in? && board.user == current_user
-      %button.cursor-pointer.z-1.relative.focus:border-blue-500.focus:ring-opacity-40.focus:ring-blue-300.focus:ring.focus:outline-none{class: "hover:[&>*]:opacity-100 hover:[&>*]:visible focus-within:[&>*]:opacity-100 focus-within:[&>*]:visible"}
+      %button.cursor-pointer.relative.focus:border-blue-500.focus:ring-opacity-40.focus:ring-blue-300.focus:ring.focus:outline-none{class: "hover:[&>*]:opacity-100 hover:[&>*]:visible focus-within:[&>*]:opacity-100 focus-within:[&>*]:visible"}
         %span.text-gray-600.tracking-tighter ・・・
         .absolute.w-fit.top-full.right-0.z-10.w-30.bg-white.rounded-md.shadow-xl.opacity-0.invisible.transition-opacity.delay-100
           =link_to edit_board_path(board.id) do
@@ -20,5 +20,5 @@
     - if local_assigns[:show_read_more] != false
       =link_to "Read More", board_path(board.id), class:"text-sm font-medium text-blue-600"
     .flex.items-center.gap-2
-      =image_tag board.user.avatar_image, class: "fles-shrink-0 size-8 rounded-full"
+      =image_tag board.user.avatar_image, class: "flex-shrink-0 size-8 rounded-full"
       %p.font-bold.text-gray-700 #{board.user.name}
