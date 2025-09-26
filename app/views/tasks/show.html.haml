@@ -1,4 +1,6 @@
-%div.bg-white.shadow-lg.rounded-lg.max-w-2xl.container.p-0.relative.z-2
+%div.bg-white.shadow-lg.rounded-lg.max-w-xl.container.p-0.relative.z-2.overflow-hidden
+    -if @task.thumbnail&.attached?
+        =image_tag @task.thumbnail, class: "w-full aspect-[3/1] object-cover"
     .p-6.flex.flex-col.gap-5
         .flex.gap-1.items-center.py-1.px-3.border.rounded-full.text-gray-500.w-fit.text-xs
             Board:
