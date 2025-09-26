@@ -21,16 +21,16 @@
               %p.mx-1.flex-1
                 Delete
   %p.text-xl.font-bold.text-gray-700 #{task.name}
-  .flex.item-center.gap-1.justify-between
-    =image_tag task.user.avatar_image, class: "fles-shrink-0 size-8 rounded-full"
+  .flex.items-center.gap-1.justify-between
+    =image_tag task.user.avatar_image, class: "flex-shrink-0 size-8 rounded-full"
     .flex.items-center.gap-2
       .flex.items-center
         -# TODO: コメント機能の実装
-        =image_tag board.user.avatar_image, class: "fles-shrink-0 size-6 rounded-full -ml-2"
-        =image_tag board.user.avatar_image, class: "fles-shrink-0 size-6 rounded-full -ml-2"
-        =image_tag board.user.avatar_image, class: "fles-shrink-0 size-6 rounded-full -ml-2"
-        =image_tag board.user.avatar_image, class: "fles-shrink-0 size-6 rounded-full -ml-2"
+        =image_tag board.user.avatar_image, class: "flex-shrink-0 size-6 rounded-full -ml-2"
+        =image_tag board.user.avatar_image, class: "flex-shrink-0 size-6 rounded-full -ml-2"
+        =image_tag board.user.avatar_image, class: "flex-shrink-0 size-6 rounded-full -ml-2"
+        =image_tag board.user.avatar_image, class: "flex-shrink-0 size-6 rounded-full -ml-2"
       .flex.items-center.gap-1
-        =image_tag "icon_comment.svg", class: "fles-shrink-0 size-5"
+        =image_tag "icon_comment.svg", class: "flex-shrink-0 size-5"
         5
 
