@@ -11,6 +11,6 @@ echo "Running RuboCop (auto-correct enabled)..."
 bundle exec rubocop -a
 
 echo "Running HAML-Lint..."
-bundle exec haml-lint
+bundle exec haml-lint -a
 
 echo "Linting completed successfully."
