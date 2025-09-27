@@ -1,6 +1,6 @@
 .w-full.max-w-sm.mx-auto.overflow-hidden.bg-white.rounded-lg.shadow-md
   .px-6.py-4
-    %h3.mt-3.text-xl.font-medium.text-center.text-brandGray Sign up
+    %h3.mt-3.text-xl.font-medium.text-center.text-brandGrayDark Sign up
 
     = render 'devise/shared/error_messages', resource: resource
 
@@ -21,5 +21,5 @@
         = f.submit 'Sign Up', class: 'submit'
 
   .flex.items-center.justify-center.py-4.text-center.bg-brandGrayLight
-    %span.text-sm.text-brandGray Already have an account?
-    = link_to 'Sign In', new_session_path(resource_name), class: 'mx-2 text-sm text-link text-brandBlack hover:underline'
+    %span.text-sm.text-brandGrayDark Already have an account?
+    = link_to 'Sign In', new_session_path(resource_name), class: 'mx-2 text-sm text-link text-brandBlack'

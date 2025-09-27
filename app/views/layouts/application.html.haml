@@ -15,15 +15,15 @@
     = stylesheet_link_tag 'tailwind', "data-turbo-track": 'reload'
     = stylesheet_link_tag 'application', "data-turbo-track": 'reload'
     = javascript_importmap_tags
-  %body
-    %header.px-4.border-b.border-brandGrayLight.flex.items-center.justify-between.h-header.fixed.top-0.w-full.bg-white.z-100
+  %body.bg-brandGrayLight.min-h-screen
+    %header.px-4.flex.items-center.justify-between.h-header.fixed.top-0.w-full.bg-white.z-100
       = link_to root_path do
         %h1 Boards Todo App
       - if user_signed_in?
         = render 'commons/user-menu'
       - else
         = link_to 'Sign In', new_user_session_path, class: 'submit'
-    %main.mt-header.h-minus-header.bg-brandGrayLight
+    %main.mt-header
       - if flash.present?
         .flash
           - flash.each do |key, message|

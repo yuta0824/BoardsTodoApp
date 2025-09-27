@@ -2,9 +2,9 @@
   = image_tag(@task.thumbnail, alt: '', class: 'w-full aspect-[3/1] object-cover') if @task.thumbnail&.attached?
   .p-6.flex.flex-col.gap-5
     .flex.justify-between
-      .flex.gap-1.items-center.py-1.px-3.border.rounded-full.text-brandGray.w-fit.text-xs
+      .flex.gap-1.items-center.py-1.px-3.border.rounded-full.text-brandGrayDark.w-fit.text-xs
         Board:
-        = link_to @board.name, board_path(@board.id), class: 'hover:text-brandBlack'
+        = link_to @board.name, board_path(@board.id), class: ''
       - if user_signed_in? && @task.user == current_user
         .ml-auto
           = render 'commons/dropdown_actions',
@@ -12,8 +12,8 @@
                    delete_path: board_task_path(@board, @task)
     .flex.flex-col.gap-1
       - if @task.due_date
-        .text-brandGray.text-xs
+        .text-brandGrayDark.text-xs
           締切：
           = @task.due_date
       %h2.font-bold.text-lg= @task.name
-    .text-brandGray= @task.description
+    .text-brandGrayDark= @task.description
