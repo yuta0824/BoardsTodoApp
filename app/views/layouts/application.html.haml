@@ -16,14 +16,14 @@
     = stylesheet_link_tag 'application', "data-turbo-track": 'reload'
     = javascript_importmap_tags
   %body
-    %header.px-4.border-b.border-gray-200.flex.items-center.justify-between.h-header.fixed.top-0.w-full.bg-white.z-100
+    %header.px-4.border-b.border-brandGrayLight.flex.items-center.justify-between.h-header.fixed.top-0.w-full.bg-white.z-100
       = link_to root_path do
         %h1 Boards Todo App
       - if user_signed_in?
         = render 'commons/user-menu'
       - else
-        = link_to 'Sign In', new_user_session_path, class: 'px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50'
-    %main.mt-header.h-minus-header.bg-gray-100
+        = link_to 'Sign In', new_user_session_path, class: 'px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-brandBlack rounded-lg hover:bg-brandGray focus:outline-none focus:ring focus:ring-brandGray focus:ring-opacity-50'
+    %main.mt-header.h-minus-header.bg-brandGrayLight
       - if flash.present?
         .flash
           - flash.each do |key, message|

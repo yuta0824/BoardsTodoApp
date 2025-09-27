@@ -1,13 +1,13 @@
-.px-5.py-6.rounded-lg.shadow-md.space-y-5.bg-gray-100
+.px-5.py-6.rounded-lg.shadow-md.space-y-5.bg-brandGrayLight
   .flex.items-center.justify-between.gap-3
-    %p.text-xl.font-bold.text-gray-700= board.name
+    %p.text-xl.font-bold.text-brandBlack= board.name
     - if user_signed_in? && board.user == current_user
       = render 'commons/dropdown_actions',
                edit_path: edit_board_path(board),
                delete_path: board_path(board)
-  %p.mt-2.text-gray-600= board.description
+  %p.mt-2.text-brandGray= board.description
   .flex.gap-2.items-center.justify-between
-    = link_to 'Read More', board_path(board), class: 'text-sm font-medium text-blue-600' if local_assigns.fetch(:show_read_more, true)
+    = link_to 'Read More', board_path(board), class: 'text-sm font-medium text-brandBlack' if local_assigns.fetch(:show_read_more, true)
     .flex.items-center.gap-2
       = image_tag board.user.avatar_image, class: 'flex-shrink-0 size-8 rounded-full'
-      %p.font-bold.text-gray-700= board.user.name
+      %p.font-bold.text-brandBlack= board.user.name
