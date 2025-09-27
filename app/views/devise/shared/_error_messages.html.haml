@@ -1,4 +1,5 @@
 - if resource.errors.any?
+  -# haml-lint:disable IdNames
   #error_explanation{ 'data-turbo-cache' => 'false' }
     %ul.mt-4
       - resource.errors.full_messages.each do |message|
