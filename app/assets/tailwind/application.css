@@ -26,7 +26,6 @@ body {
   margin-inline: auto;
   padding-block: 2rem;
   padding-inline: 4%;
-  max-width: 600px;
 }
 
 @utility h-header {

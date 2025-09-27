@@ -6,11 +6,11 @@
 
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       .w-full.mt-4
-        %label{ for: 'avatar', class: 'label' }
+        %label.label{ for: 'avatar' }
           Avatar
         = f.file_field :avatar, class: 'input-file'
       .w-full.mt-4
-        %label{ for: 'name', class: 'label' }
+        %label.label{ for: 'name' }
           Name
         = f.text_field :name, autocomplete: 'name', placeholder: 'Your Name', "aria-label": 'Your Name', class: 'input'
       .flex.items-center.justify-center.mt-4

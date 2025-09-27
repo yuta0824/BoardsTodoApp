@@ -1,4 +1,4 @@
-.grid.grid-cols-1.gap-6.p-4.bg-white.shadow-lg.rounded.md:p-6
+.grid.grid-cols-1.gap-6.p-4.bg-white.shadow-lg.rounded.md:p-6.md:grid-cols-2
+  = link_to '＋ Add new board', new_board_path, class: 'new-card'
   - @boards.each do |board|
     = render 'commons/board-card', board: board
-  = link_to '＋ Add new board', new_board_path, class: 'new-card'

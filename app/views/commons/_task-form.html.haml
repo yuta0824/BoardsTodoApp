@@ -1,18 +1,18 @@
 = form_with(model: [board, task], local: true, data: { turbo: false }) do |f|
   .w-full.mt-4
-    %label{ for: 'task_thumbnail', class: 'label' }
+    %label.label{ for: 'task_thumbnail' }
       Thumbnail
     = f.file_field :thumbnail, class: 'input-file'
   .w-full.mt-4
-    %label{ for: 'task_name', class: 'label' }
+    %label.label{ for: 'task_name' }
       Name
     = f.text_field :name, class: 'input'
   .w-full.mt-4
-    %label{ for: 'task_description', class: 'label' }
+    %label.label{ for: 'task_description' }
       Description
     = f.text_area :description, class: 'input'
   .w-full.mt-4
-    %label{ for: 'task_due_date', class: 'label' }
+    %label.label{ for: 'task_due_date' }
       Due Date
     = f.date_field :due_date, class: 'input'
   .flex.items-center.justify-center.mt-4

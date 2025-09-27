@@ -6,8 +6,8 @@
       - if user_signed_in? && task.user == current_user
         .ml-auto
           = render 'commons/dropdown_actions',
-                    edit_path: edit_board_task_path(board, task),
-                    delete_path: board_task_path(board, task)
+                   edit_path: edit_board_task_path(board, task),
+                   delete_path: board_task_path(board, task)
     - if task.due_date
       .text-xs.text-brandGrayDark 締切：#{task.due_date}
     %p.text-xl.font-bold.text-brandBlack.mt-1= task.name

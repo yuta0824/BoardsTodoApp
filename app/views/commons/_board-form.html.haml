@@ -1,10 +1,10 @@
 = form_with(model: board, local: true, data: { turbo: false }) do |f|
   .w-full.mt-4
-    %label{ for: 'board_name', class: 'label' }
+    %label.label{ for: 'board_name' }
       Name
     = f.text_field :name, class: 'input'
   .w-full.mt-4
-    %label{ for: 'board_description', class: 'label' }
+    %label.label{ for: 'board_description' }
       Description
     = f.text_area :description, class: 'input'
   .flex.items-center.justify-center.mt-4
