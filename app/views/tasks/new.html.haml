@@ -1,9 +1,5 @@
 .w-full.max-w-sm.mx-auto.overflow-hidden.bg-white.rounded-lg.shadow-md
   .px-6.py-6
     %h2.mt-3.text-xl.font-medium.text-center.text-gray-600 New Task
-    - if @task.errors.any?
-      .bg-red-100.border.border-red-400.text-red-700.px-4.py-3.rounded.my-4
-        %ul
-          - @task.errors.full_messages.each do |message|
-            %li= message
+    = render 'commons/form_errors', object: @task
     = render 'commons/task-form', board: @board, task: @task
