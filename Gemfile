@@ -66,6 +66,9 @@ group :development do
 
   # Annotate models and routes with schema information [https://github.com/ctran/annotate_models]
   gem 'annotate'
+
+  # HAML files clean and readable [https://github.com/sds/haml-lint]
+  gem 'haml_lint', require: false
 end
 
 group :test do

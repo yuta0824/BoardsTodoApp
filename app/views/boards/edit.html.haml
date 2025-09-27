@@ -2,8 +2,8 @@
   .px-6.py-6
     %h2.mt-3.text-xl.font-medium.text-center.text-gray-600 Edit Board
     - if @board.errors.any?
-      %div.bg-red-100.border.border-red-400.text-red-700.px-4.py-3.rounded.my-4
+      .bg-red-100.border.border-red-400.text-red-700.px-4.py-3.rounded.my-4
         %ul
           - @board.errors.full_messages.each do |message|
             %li= message
-    =render "commons/board-form", board: @board
+    = render 'commons/board-form', board: @board
