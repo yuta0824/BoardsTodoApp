@@ -1,13 +1,13 @@
 class TasksController < ApplicationController
     before_action :authenticate_user!, except: [:show]
+    before_action :set_board, only: [:new, :create, :show]
+    before_action :set_task, only: [:edit, :update, :destroy]
 
     def new
-        @board = Board.find(params[:board_id])
         @task = current_user.tasks.build
     end
 
     def create
-        @board = Board.find(params[:board_id])
         @task = current_user.tasks.build(task_params.merge(board: @board))
 
         if @task.save
@@ -18,17 +18,14 @@ class TasksController < ApplicationController
     end
 
     def show
-        @board = Board.find(params[:board_id])
         @task = @board.tasks.find(params[:id])
     end
 
     def edit
-        @task = current_user.tasks.find(params[:id])
         @board = @task.board
     end
 
     def update
-        @task = current_user.tasks.find(params[:id])
         @board = @task.board
 
         if @task.update(task_params)
@@ -39,7 +36,6 @@ class TasksController < ApplicationController
     end
 
     def destroy
-        @task = current_user.tasks.find(params[:id])
         @board = @task.board
         @task.destroy!
         flash[:success] = '削除しました。'
@@ -52,4 +48,11 @@ class TasksController < ApplicationController
         params.require(:task).permit(:name, :description, :due_date, :thumbnail)
     end
 
+    def set_board
+      @board = Board.find(params[:board_id])
+    end
+
+    def set_task
+      @task = current_user.tasks.find(params[:id])
+    end
 end
