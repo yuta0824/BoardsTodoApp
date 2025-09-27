@@ -4,6 +4,14 @@
   --header-height: 74px;
 }
 
+@theme {
+  --color-brandBlack: #333;
+  --color-brandGray: var(--color-gray-600);
+  --color-brandGrayLight: var(--color-gray-100);
+  --color-success: var(--color-emerald-500);
+  --color-danger: var(--color-red-500);
+}
+
 @utility container {
   margin-inline: auto;
   padding-block: 2rem;
