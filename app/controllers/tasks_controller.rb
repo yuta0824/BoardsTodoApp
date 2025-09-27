@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
     before_action :authenticate_user!, except: [:show]
     before_action :set_board, only: [:new, :create, :show]
-    before_action :set_task, only: [:edit, :update, :destroy]
+    before_action :set_task_and_board, only: [:edit, :update, :destroy]
 
     def new
         @task = current_user.tasks.build
@@ -22,12 +22,9 @@ class TasksController < ApplicationController
     end
 
     def edit
-        @board = @task.board
     end
 
     def update
-        @board = @task.board
-
         if @task.update(task_params)
             redirect_to board_task_path(@board.id, @task.id), notice: 'タスクが更新されました'
         else
@@ -36,7 +33,6 @@ class TasksController < ApplicationController
     end
 
     def destroy
-        @board = @task.board
         @task.destroy!
         flash[:success] = '削除しました。'
         redirect_to board_path(@board.id)
@@ -52,7 +48,8 @@ class TasksController < ApplicationController
       @board = Board.find(params[:board_id])
     end
 
-    def set_task
+    def set_task_and_board
       @task = current_user.tasks.find(params[:id])
+      @board = @task.board
     end
 end

@@ -39,7 +39,7 @@ class BoardsController < ApplicationController
   def destroy
     @board.destroy!
     flash[:success] = '削除しました。'
-    redirect_to :root
+    redirect_to root_path
   end
 
   private
