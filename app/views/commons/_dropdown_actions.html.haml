@@ -1,0 +1,16 @@
+- edit_path = local_assigns.fetch(:edit_path)
+- delete_path = local_assigns.fetch(:delete_path)
+
+%button{ class: 'cursor-pointer relative focus:border-blue-500 focus:ring-opacity-40 focus:ring-blue-300 focus:ring focus:outline-none hover:[&>*]:opacity-100 hover:[&>*]:visible focus-within:[&>*]:opacity-100 focus-within:[&>*]:visible' }
+  %span.text-gray-600.tracking-tighter ・・・
+  .absolute.top-full.right-0.z-10.w-30.bg-white.rounded-md.shadow-xl.opacity-0.invisible.transition-opacity.delay-100.w-fit
+    = link_to edit_path do
+      .flex.items-center.p-3.text-sm.text-gray-600.capitalize.transition-colors.duration-300.transform.hover:bg-gray-100
+        = image_tag 'icon_write.svg', class: 'w-5 h-5 mx-1'
+        %span.mx-1
+          Edit
+    = link_to delete_path, data: { turbo_confirm: 'この操作は取り消せません。本当に削除しますか？', turbo_method: 'delete' } do
+      .flex.items-center.p-3.text-sm.text-gray-600.capitalize.transition-colors.duration-300.transform.hover:bg-gray-100
+        = image_tag 'icon_delete.svg', class: 'w-5 h-5 mx-1 flex-shrink-0'
+        %p.mx-1.flex-1
+          Delete
