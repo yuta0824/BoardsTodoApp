@@ -1,6 +1,6 @@
 - object = local_assigns[:object]
 - if object&.respond_to?(:errors) && object.errors.any?
-  .bg-red-100.border.border-red-400.text-red-700.px-4.py-3.rounded.my-4
+  .bg-brandGrayLight.border.border-danger.text-danger.px-4.py-3.rounded.my-4
     %ul
       - object.errors.full_messages.each do |message|
         %li= message

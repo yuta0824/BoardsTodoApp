@@ -4,24 +4,59 @@
   --header-height: 74px;
 }
 
+body {
+  font-size: 1rem;
+  color: var(--color-brandBlack);
+  font-family: "Noto Sans JP", sans-serif;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+@theme {
+  --color-brandBlack: #333;
+  --color-brandGrayDark: var(--color-gray-600);
+  --color-brandGray: var(--color-gray-400);
+  --color-brandGrayLight: var(--color-gray-100);
+  --color-success: var(--color-emerald-500);
+  --color-danger: var(--color-red-500);
+  --color-link: var(--color-blue-500);
+}
+
 @utility container {
   margin-inline: auto;
   padding-block: 2rem;
-  padding-inline: 2rem;
+  padding-inline: 4%;
 }
 
 @utility h-header {
   height: var(--header-height);
 }
 
-@utility min-h-header {
-  min-height: var(--header-height);
-}
-
 @utility mt-header {
   margin-top: var(--header-height);
 }
 
-@utility h-minus-header {
-  height: calc(100vh - var(--header-height));
+.label {
+  @apply w-fit cursor-pointer block text-sm text-brandGrayDark;
+}
+
+.input {
+  @apply block mt-2 w-full rounded-lg border border-brandGray bg-white px-5 py-2.5 text-brandBlack;
+  @apply focus:border-brandGray focus:outline-none focus:ring focus:ring-brandGray;
+}
+
+.input-file {
+  @apply block w-full px-3 py-2 mt-2 text-sm text-brandGrayDark bg-white border border-brandGray rounded-lg file:bg-brandGrayLight file:text-brandBlack file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full;
+}
+
+.submit {
+  @apply px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-brandBlack rounded-lg cursor-pointer;
+}
+
+.new-card {
+  @apply min-h-30 bg-white flex items-center justify-center text-lg p-5 rounded-lg shadow-md border border-brandGray border-dashed;
+}
+
+.menu-width-icon {
+  @apply flex items-center p-3 text-sm capitalize transition-colors duration-300 transform hover:bg-brandGrayLight;
 }
