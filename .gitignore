@@ -40,3 +40,4 @@
 
 # Ignore Private files
 .private/
+.vscode/settings.json
