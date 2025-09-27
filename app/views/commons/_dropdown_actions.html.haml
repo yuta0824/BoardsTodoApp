@@ -1,7 +1,7 @@
 - edit_path = local_assigns.fetch(:edit_path)
 - delete_path = local_assigns.fetch(:delete_path)
 
-%button{ class: 'cursor-pointer relative focus:border-brandGray focus:ring-opacity-40 focus:ring-brandGray focus:ring focus:outline-none hover:[&>*]:opacity-100 hover:[&>*]:visible focus-within:[&>*]:opacity-100 focus-within:[&>*]:visible' }
+%button{ class: 'cursor-pointer relative hover:[&>*]:opacity-100 hover:[&>*]:visible focus-within:[&>*]:opacity-100 focus-within:[&>*]:visible' }
   %span.text-brandGray.tracking-tighter ・・・
   .absolute.top-full.right-0.z-10.w-30.bg-white.rounded-md.shadow-xl.opacity-0.invisible.transition-opacity.delay-100.w-fit
     = link_to edit_path do

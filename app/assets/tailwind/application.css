@@ -10,6 +10,7 @@
   --color-brandGrayLight: var(--color-gray-100);
   --color-success: var(--color-emerald-500);
   --color-danger: var(--color-red-500);
+  --color-link: var(--color-blue-500);
 }
 
 @utility container {
@@ -32,4 +33,21 @@
 
 @utility h-minus-header {
   height: calc(100vh - var(--header-height));
+}
+
+.label {
+  @apply w-fit cursor-pointer block text-sm text-brandGray;
+}
+
+.input {
+  @apply block mt-2 w-full rounded-lg border border-brandGray bg-white px-5 py-2.5 text-brandBlack;
+  @apply focus:border-brandGray focus:outline-none focus:ring focus:ring-brandGray;
+}
+
+.input-file {
+  @apply block w-full px-3 py-2 mt-2 text-sm text-brandGray bg-white border border-brandGray rounded-lg file:bg-brandGrayLight file:text-brandBlack file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full;
+}
+
+.submit {
+  @apply px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-brandBlack rounded-lg cursor-pointer;
 }

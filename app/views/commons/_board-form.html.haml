@@ -1,11 +1,11 @@
 = form_with(model: board, local: true, data: { turbo: false }) do |f|
   .w-full.mt-4
-    %label{ for: 'board_name', class: 'w-fit cursor-pointer block text-sm text-brandGray' }
+    %label{ for: 'board_name', class: 'label' }
       Name
-    = f.text_field :name, class: 'block mt-2 w-full placeholder-brandGray/70 rounded-lg border border-brandGray bg-white px-5 py-2.5 text-brandBlack focus:border-brandGray focus:outline-none focus:ring focus:ring-brandGray focus:ring-opacity-40'
+    = f.text_field :name, class: 'input'
   .w-full.mt-4
-    %label{ for: 'board_description', class: 'w-fit cursor-pointer block text-sm text-brandGray' }
+    %label{ for: 'board_description', class: 'label' }
       Description
-    = f.text_area :description, class: 'block mt-2 w-full placeholder-brandGray/70 rounded-lg border border-brandGray bg-white px-5 py-2.5 text-brandBlack focus:border-brandGray focus:outline-none focus:ring focus:ring-brandGray focus:ring-opacity-40'
+    = f.text_area :description, class: 'input'
   .flex.items-center.justify-center.mt-4
-    = f.submit 'Save', class: 'px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-brandBlack rounded-lg hover:bg-brandGray focus:outline-none focus:ring focus:ring-brandGray focus:ring-opacity-50'
+    = f.submit 'Submit', class: 'submit'
