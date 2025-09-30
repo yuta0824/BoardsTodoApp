@@ -1,19 +1,23 @@
-.bg-white.shadow-lg.rounded-lg.max-w-xl.container.p-0.relative.z-2.overflow-hidden
-  = image_tag(@task.thumbnail, alt: '', class: 'w-full aspect-[3/1] object-cover') if @task.thumbnail&.attached?
-  .p-6.flex.flex-col.gap-5
-    .flex.justify-between
-      .flex.gap-1.items-center.py-1.px-3.border.rounded-full.text-brandGrayDark.w-fit.text-xs
-        Board:
-        = link_to @board.name, board_path(@board.id), class: ''
-      - if user_signed_in? && @task.user == current_user
-        .ml-auto
-          = render 'commons/dropdown_actions',
-                   edit_path: edit_board_task_path(@board, @task),
-                   delete_path: board_task_path(@board, @task)
-    .flex.flex-col.gap-1
-      - if @task.due_date
-        .text-brandGrayDark.text-xs
-          締切：
-          = @task.due_date
-      %h2.font-bold.text-lg= @task.name
-    .text-brandGrayDark= @task.description
+.container.max-w-xl
+  .bg-white.shadow-lg.rounded-lg.container.p-0.relative.z-2.overflow-hidden
+    = image_tag(@task.thumbnail, alt: '', class: 'w-full aspect-[3/1] object-cover') if @task.thumbnail&.attached?
+    .p-6.flex.flex-col.gap-5
+      .flex.justify-between
+        .flex.gap-1.items-center.py-1.px-3.border.rounded-full.text-brandGrayDark.w-fit.text-xs
+          Board:
+          = link_to @board.name, board_path(@board.id), class: ''
+        - if user_signed_in? && @task.user == current_user
+          .ml-auto
+            = render 'commons/dropdown_actions',
+                     edit_path: edit_board_task_path(@board, @task),
+                     delete_path: board_task_path(@board, @task)
+      .flex.flex-col.gap-1
+        - if @task.due_date
+          .text-brandGrayDark.text-xs
+            締切：
+            = @task.due_date
+        %h2.font-bold.text-lg= @task.name
+      .text-brandGrayDark= @task.description
+  .mt-10
+    %h2.font-bold.text-2xl Comment
+    = link_to '+Add new Comment', new_board_task_comment_path(@board.id, @task.id)
