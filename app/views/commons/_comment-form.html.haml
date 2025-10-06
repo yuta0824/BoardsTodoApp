@@ -1,0 +1,7 @@
+= form_with(model: [board, task, comment], local: true, data: { turbo: false }) do |f|
+  .w-full.mt-4
+    %label.label{ for: 'comment_content' }
+      Content
+    = f.text_area :content, class: 'input'
+  .flex.items-center.justify-center.mt-4
+    = f.submit 'Submit', class: 'submit'
