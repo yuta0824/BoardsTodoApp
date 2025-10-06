@@ -27,4 +27,12 @@ class Task < ApplicationRecord
   belongs_to :user
   belongs_to :board
   validates :name, presence: true
+
+  def comments_count
+    self.comments.count
+  end
+
+  def comment_users
+    User.where(id: comments.select(:user_id).distinct)
+  end
 end

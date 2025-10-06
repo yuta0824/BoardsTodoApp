@@ -1,25 +1,23 @@
-.rounded-lg.shadow-md.border.border-brandGray.relative.flex.flex-col.gap-3.bg-white
+.relative.rounded-lg.shadow-md.border.border-brandGray.flex.flex-col.gap-3.bg-white.overflow-hidden
   = link_to '', board_task_path(board.id, task.id), class: 'inset-0 absolute'
   = image_tag task.thumbnail, class: 'w-full aspect-[3/1] object-cover' if task.thumbnail&.attached?
   .px-3.py-3.md:px-5.md:py-5
-    .absolute.top-5.right-5
+    .flex.items-center
+      %div
+        - if task.due_date
+          .text-xs.text-brandGrayDark 締切：#{task.due_date}
+        %p.text-xl.font-bold.text-brandBlack.mt-1= task.name
       - if user_signed_in? && task.user == current_user
         .ml-auto
           = render 'commons/dropdown_actions',
                    edit_path: edit_board_task_path(board, task),
                    delete_path: board_task_path(board, task)
-    - if task.due_date
-      .text-xs.text-brandGrayDark 締切：#{task.due_date}
-    %p.text-xl.font-bold.text-brandBlack.mt-1= task.name
     .flex.items-center.gap-1.justify-between.mt-4
       = image_tag task.user.avatar_image, class: 'flex-shrink-0 size-8 rounded-full'
       .flex.items-center.gap-2
-        .flex.items-center
-          -# TODO: コメント機能の実装
-          = image_tag board.user.avatar_image, class: 'flex-shrink-0 size-6 rounded-full -ml-2'
-          = image_tag board.user.avatar_image, class: 'flex-shrink-0 size-6 rounded-full -ml-2'
-          = image_tag board.user.avatar_image, class: 'flex-shrink-0 size-6 rounded-full -ml-2'
-          = image_tag board.user.avatar_image, class: 'flex-shrink-0 size-6 rounded-full -ml-2'
-        .flex.items-center.gap-1
+        .flex.items-center.gap-1.flex-shrink-0
+          - task.comment_users.each do |user|
+            = image_tag user.avatar_image, class: 'flex-shrink-0 size-6 rounded-full'
+        .flex.items-center.gap-1.flex-shrink-0
           = image_tag 'icon_comment.svg', class: 'flex-shrink-0 size-5'
-          5
+          = task.comments_count
