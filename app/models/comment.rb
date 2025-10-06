@@ -22,4 +22,8 @@
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :task
+
+  def owned_by?(user)
+    user.present? && self.user == user
+  end
 end
