@@ -16,6 +16,14 @@ class CommentsController < ApplicationController
       end
     end
 
+    def destroy
+      @comment = current_user.comments.find(params[:id])
+      @task = @comment.task
+      @board = @task.board
+      @comment.destroy!
+      redirect_to board_task_path(@board, @task), notice: '削除しました'
+    end
+
     private
 
     def comment_params
