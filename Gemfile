@@ -56,7 +56,7 @@ group :development, :test do
   gem 'pry-byebug'
 
   # Use .env files [https://github.com/bkeepers/dotenv]
-  gem "dotenv-rails"
+  gem 'dotenv-rails'
 end
 
 group :development do
