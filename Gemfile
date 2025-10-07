@@ -55,6 +55,8 @@ group :development, :test do
   # Use Pry for debugging [https://github.com/pry/pry]
   gem 'pry-byebug'
 
+  # Use .env files [https://github.com/bkeepers/dotenv]
+  gem 'dotenv-rails'
 end
 
 group :development do
