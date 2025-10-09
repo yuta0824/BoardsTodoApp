@@ -24,6 +24,8 @@
       - else
         = link_to 'Sign In', new_user_session_path, class: 'submit'
     %main.mt-header
+      - if Rails.env.production?
+        = render 'commons/flash', key: "success", message: "デモサイトのため、1時間ごとにデータがリセットされます。自由にアカウントを作成してお試しください。"
       - if flash.present?
         .flash
           - flash.each do |key, message|
