@@ -11,7 +11,8 @@ module BoardsTodoApp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.2
 
-    if ['development', 'test'].include? ENV['RAILS_ENV']
+    if Rails.env.development? || Rails.env.test?
+      Bundler.require(*Rails.groups)
       Dotenv::Railtie.load
     end
 
