@@ -1,5 +1,5 @@
 namespace :users do
-  desc "Reset all users and reseed"
+  desc 'Reset all users and reseed'
   task reset: :environment do
     User.destroy_all
     puts "All users destroyed at #{Time.current}"
