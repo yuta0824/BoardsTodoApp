@@ -1,8 +1,8 @@
-import { getTest } from "./api/getTest";
 import { closeFlash } from "./modules/closeFlash";
+import { displayComments } from "./modules/displayComments";
 
 document.addEventListener("turbo:load", () => {
-  getTest();
+  displayComments();
   closeFlash();
 });
 
