@@ -41,3 +41,11 @@
 # Ignore Private files
 .private/
 .vscode/settings.json
+
+# Shakapacker
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
