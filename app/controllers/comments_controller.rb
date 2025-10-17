@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:index]
     before_action :set_board_and_task, only: [:index, :new, :create]
 
     def index
-      comments = @task.comments
+      comments = @task.comments.includes(:user)
       render json: comments
     end
 
