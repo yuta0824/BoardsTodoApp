@@ -42,6 +42,12 @@ gem 'hamlit'
 # AWS SDK for Ruby - S3 [https://github.com/aws/aws-sdk-ruby]
 gem 'aws-sdk-s3', require: false
 
+# Shakapacker [https://github.com/shakacode/shakapacker]
+gem 'shakapacker', '= 9.2'
+
+# Serializer [https://github.com/rails-api/active_model_serializers]
+gem 'active_model_serializers'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[ mri windows ], require: 'debug/prelude'

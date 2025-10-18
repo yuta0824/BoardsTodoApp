@@ -14,7 +14,7 @@
     %link{ :href => '/icon.png', :rel => 'apple-touch-icon' }/
     = stylesheet_link_tag 'tailwind', "data-turbo-track": 'reload'
     = stylesheet_link_tag 'application', "data-turbo-track": 'reload'
-    = javascript_importmap_tags
+    = javascript_pack_tag 'application', 'data-turbo-track': 'reload'
   %body.bg-brandGrayLight.min-h-screen
     %header.px-4.flex.items-center.justify-between.h-header.fixed.top-0.w-full.bg-white.z-100
       = link_to root_path do

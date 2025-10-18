@@ -1,27 +1,27 @@
 class CommentsController < ApplicationController
-    before_action :authenticate_user!
-    before_action :set_board_and_task, only: [:new, :create]
+    before_action :authenticate_user!, except: [:index]
+    before_action :set_board_and_task, only: [:index, :new, :create]
+
+    def index
+      render_comments(@task)
+    end
 
     def new
       @comment = current_user.comments.build
     end
 
     def create
-      @comment = current_user.comments.build(comment_params.merge(task: @task))
-
-      if @comment.save
-        redirect_to board_task_path(@board, @task), notice: 'コメントしました'
-      else
-        render :new, status: :unprocessable_entity
-      end
+      comment = current_user.comments.build(comment_params.merge(task: @task))
+      task = comment.task
+      comment.save!
+      render_comments(task)
     end
 
     def destroy
-      @comment = current_user.comments.find(params[:id])
-      @task = @comment.task
-      @board = @task.board
-      @comment.destroy!
-      redirect_to board_task_path(@board, @task), notice: '削除しました'
+      comment = current_user.comments.find(params[:id])
+      task = comment.task
+      comment.destroy!
+      render_comments(task)
     end
 
     private
@@ -33,5 +33,10 @@ class CommentsController < ApplicationController
     def set_board_and_task
       @board = Board.find(params[:board_id])
       @task = @board.tasks.find(params[:task_id])
+    end
+
+    def render_comments(task)
+      comments = task.comments.includes(:user).order(created_at: :asc)
+      render json: comments
     end
 end

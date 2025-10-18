@@ -1,0 +1,16 @@
+import axios from "axios";
+import { CommentResponse } from "../../types/CommentResponse";
+
+export const getComments = async (
+  boardId: number,
+  taskId: number
+): Promise<CommentResponse[]> => {
+  try {
+    const response = await axios.get<CommentResponse[]>(
+      `/boards/${boardId}/tasks/${taskId}/comments`
+    );
+    return response.data ?? [];
+  } catch (error) {
+    throw error;
+  }
+};
