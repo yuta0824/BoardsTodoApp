@@ -1,5 +1,5 @@
 class CommentSerializer < ActiveModel::Serializer
-  attributes :content, :commenter_name, :commenter_avatar
+  attributes :id, :content, :commenter_name, :commenter_avatar, :is_owner
 
   def commenter_name
     object.user&.name || 'guest'
@@ -11,5 +11,9 @@ class CommentSerializer < ActiveModel::Serializer
     else
       ActionController::Base.helpers.asset_path('avatar.svg')
     end
+  end
+
+  def is_owner
+    scope.present? && object.user_id == scope.id
   end
 end

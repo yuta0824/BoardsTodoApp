@@ -1,17 +1,15 @@
-import { getComments, CommentResponse } from "../api/comment/getComments";
+import { CommentResponse } from "../types/CommentResponse";
 import { escapeHtml } from "../utils/escapeHtml";
 
-export const refreshComments = async (boardId: number, taskId: number) => {
+export const generateComments = (data: CommentResponse[]) => {
   const container = document.querySelector("#js-comment-container");
   if (!container) return;
-
-  const data = await getComments(boardId, taskId);
-  container.innerHTML = buildCommentsHtml(data);
-};
-
-const buildCommentsHtml = (data: CommentResponse[]) => {
-  return data
+  container.innerHTML = data
     .map((comment) => {
+      const deleteAction = comment.is_owner
+        ? `<button class="text-danger text-xs hover:underline js-delete-comment-button" data-comment-id="${comment.id}">削除</button>`
+        : "";
+
       return `
         <div class="bg-white shadow-lg rounded-lg p-4 border border-brandGray flex items-center justify-between">
           <div>
@@ -27,6 +25,7 @@ const buildCommentsHtml = (data: CommentResponse[]) => {
             </div>
             <div class="mt-4">${escapeHtml(comment.content)}</div>
           </div>
+          ${deleteAction}
         </div>
       `;
     })

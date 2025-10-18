@@ -1,10 +1,5 @@
 import axios from "axios";
-
-export type CommentResponse = {
-  content: string;
-  commenter_name: string;
-  commenter_avatar: string;
-};
+import { CommentResponse } from "../../types/CommentResponse";
 
 export const getComments = async (
   boardId: number,

@@ -1,6 +1,7 @@
-import { refreshComments } from "../helpers/refreshComments";
+import { getComments } from "../api/comment/getComments";
+import { generateComments } from "../helpers/generateComments";
 
-export const initComments = () => {
+export const initComments = async () => {
   const taskElement = document.querySelector("[data-board-id][data-task-id]");
   if (!taskElement) return;
 
@@ -8,5 +9,6 @@ export const initComments = () => {
   const taskId = Number(taskElement.getAttribute("data-task-id"));
   if (!boardId || !taskId) return;
 
-  refreshComments(boardId, taskId);
+  const data = await getComments(boardId, taskId);
+  generateComments(data);
 };

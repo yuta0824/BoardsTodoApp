@@ -1,7 +1,7 @@
 import { postComment } from "../api/comment/postComment";
-import { refreshComments } from "../helpers/refreshComments";
+import { generateComments } from "../helpers/generateComments";
 
-export const initCommentForm = () => {
+export const initCommentPost = () => {
   const taskElement = document.querySelector("[data-board-id][data-task-id]");
   if (!taskElement) return;
 
@@ -18,13 +18,8 @@ export const initCommentForm = () => {
     e.preventDefault();
     const content = field.value.trim();
     if (!content) return;
-
-    try {
-      await postComment(boardId, taskId, content);
-      field.value = "";
-      await refreshComments(boardId, taskId);
-    } catch (error) {
-      console.error(error);
-    }
+    const data = await postComment(boardId, taskId, content);
+    field.value = "";
+    await generateComments(data);
   });
 };

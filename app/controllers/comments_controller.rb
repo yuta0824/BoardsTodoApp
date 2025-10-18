@@ -12,18 +12,19 @@ class CommentsController < ApplicationController
     end
 
     def create
-      @comment = current_user.comments.build(comment_params.merge(task: @task))
-      @comment.save!
-
-      render json: @comment
+      comment = current_user.comments.build(comment_params.merge(task: @task))
+      task = comment.task
+      comment.save!
+      comments = task.comments.includes(:user)
+      render json: comments
     end
 
     def destroy
-      @comment = current_user.comments.find(params[:id])
-      @task = @comment.task
-      @board = @task.board
-      @comment.destroy!
-      redirect_to board_task_path(@board, @task), notice: '削除しました'
+      comment = current_user.comments.find(params[:id])
+      task = comment.task
+      comment.destroy!
+      comments = task.comments.includes(:user)
+      render json: comments
     end
 
     private
