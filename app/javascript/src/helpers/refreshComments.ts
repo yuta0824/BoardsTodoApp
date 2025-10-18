@@ -1,22 +1,15 @@
-import {
-  fetchGetComments,
-  CommentResponse,
-} from "../api/comment/fetchGetComments";
+import { getComments, CommentResponse } from "../api/comment/getComments";
 import { escapeHtml } from "../utils/escapeHtml";
 
-export const displayComments = async () => {
-  const taskElement = document.querySelector("[data-board-id][data-task-id]");
+export const refreshComments = async (boardId: number, taskId: number) => {
   const container = document.querySelector("#js-comment-container");
-  if (!taskElement || !container) return;
+  if (!container) return;
 
-  const boardId = Number(taskElement.getAttribute("data-board-id"));
-  const taskId = Number(taskElement.getAttribute("data-task-id"));
-
-  const data = await fetchGetComments(boardId, taskId);
-  container.innerHTML = createDom(data);
+  const data = await getComments(boardId, taskId);
+  container.innerHTML = buildCommentsHtml(data);
 };
 
-const createDom = (data: CommentResponse[]) => {
+const buildCommentsHtml = (data: CommentResponse[]) => {
   return data
     .map((comment) => {
       return `

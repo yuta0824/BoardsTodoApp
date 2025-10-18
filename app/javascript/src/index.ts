@@ -1,8 +1,10 @@
 import { closeFlash } from "./modules/closeFlash";
-import { displayComments } from "./modules/displayComments";
+import { initCommentForm } from "./modules/initCommentForm";
+import { initComments } from "./modules/initComments";
 
 document.addEventListener("turbo:load", () => {
-  displayComments();
+  initComments();
+  initCommentForm();
   closeFlash();
 });
 

@@ -6,7 +6,7 @@ export type CommentResponse = {
   commenter_avatar: string;
 };
 
-export const fetchGetComments = async (
+export const getComments = async (
   boardId: number,
   taskId: number
 ): Promise<CommentResponse[]> => {

@@ -13,12 +13,9 @@ class CommentsController < ApplicationController
 
     def create
       @comment = current_user.comments.build(comment_params.merge(task: @task))
+      @comment.save!
 
-      if @comment.save
-        redirect_to board_task_path(@board, @task), notice: 'コメントしました'
-      else
-        render :new, status: :unprocessable_entity
-      end
+      render json: @comment
     end
 
     def destroy
