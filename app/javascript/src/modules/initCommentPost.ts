@@ -20,6 +20,6 @@ export const initCommentPost = () => {
     if (!content) return;
     const data = await postComment(boardId, taskId, content);
     field.value = "";
-    await generateComments(data);
+    generateComments(data);
   });
 };
