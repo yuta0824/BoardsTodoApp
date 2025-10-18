@@ -3,8 +3,7 @@ class CommentsController < ApplicationController
     before_action :set_board_and_task, only: [:index, :new, :create]
 
     def index
-      comments = @task.comments.includes(:user)
-      render json: comments
+      render_comments(@task)
     end
 
     def new
@@ -15,16 +14,14 @@ class CommentsController < ApplicationController
       comment = current_user.comments.build(comment_params.merge(task: @task))
       task = comment.task
       comment.save!
-      comments = task.comments.includes(:user)
-      render json: comments
+      render_comments(task)
     end
 
     def destroy
       comment = current_user.comments.find(params[:id])
       task = comment.task
       comment.destroy!
-      comments = task.comments.includes(:user)
-      render json: comments
+      render_comments(task)
     end
 
     private
@@ -36,5 +33,10 @@ class CommentsController < ApplicationController
     def set_board_and_task
       @board = Board.find(params[:board_id])
       @task = @board.tasks.find(params[:task_id])
+    end
+
+    def render_comments(task)
+      comments = task.comments.includes(:user).order(created_at: :asc)
+      render json: comments
     end
 end
