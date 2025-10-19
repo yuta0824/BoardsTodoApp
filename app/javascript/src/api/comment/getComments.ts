@@ -11,6 +11,7 @@ export const getComments = async (
     );
     return response.data ?? [];
   } catch (error) {
+    console.error("getComments error:", error);
     throw error;
   }
 };

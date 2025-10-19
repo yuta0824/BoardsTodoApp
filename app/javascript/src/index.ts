@@ -5,13 +5,9 @@ import { initCloseFlash } from "./modules/initCloseFlash";
 import { initTaskStatus } from "./modules/initTaskStatus";
 
 document.addEventListener("turbo:load", async () => {
-  try {
-    await initComments();
-    initCloseFlash();
-    initCommentPost();
-    initCommentDelete();
-    initTaskStatus();
-  } catch (error) {
-    throw error;
-  }
+  await initComments();
+  initCloseFlash();
+  initCommentPost();
+  initCommentDelete();
+  initTaskStatus();
 });

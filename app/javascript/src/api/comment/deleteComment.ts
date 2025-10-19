@@ -13,6 +13,7 @@ export const deleteComment = async (
     );
     return response.data ?? [];
   } catch (error) {
+    console.error("deleteComment error:", error);
     throw error;
   }
 };

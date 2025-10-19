@@ -26,6 +26,7 @@ export const postComment = async (
     );
     return response.data ?? [];
   } catch (error) {
+    console.error("postComment error:", error);
     throw error;
   }
 };
