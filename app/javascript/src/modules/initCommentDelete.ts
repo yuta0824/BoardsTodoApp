@@ -1,12 +1,15 @@
 import { deleteComment } from "../api/comment/deleteComment";
 import { generateComments } from "../helpers/generateComments";
+import {
+  hasListenerAttached,
+  markListenerAttached,
+} from "../utils/eventListener";
 
 export const initCommentDelete = () => {
   const container = document.querySelector<HTMLElement>(
     "#js-comment-container"
   );
-  if (!container || container.dataset.deleteListenerAttached === "true") return;
-  if (!container) return;
+  if (!container || hasListenerAttached(container)) return;
 
   container.addEventListener("click", async (e) => {
     const target = e.target as HTMLElement;
@@ -21,5 +24,5 @@ export const initCommentDelete = () => {
     generateComments(data);
   });
 
-  container.dataset.deleteListenerAttached = "true";
+  markListenerAttached(container);
 };
