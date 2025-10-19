@@ -1,4 +1,4 @@
-class Api::V1::StatusesController < ApplicationController
+class Api::V1::Tasks::StatusesController < ApplicationController
   before_action :authenticate_user!
 
   def update

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :tasks, only: %i() do
-        resource :status, only: %i(update)
+        resource :status, only: %i(update), module: :tasks
       end
     end
   end
