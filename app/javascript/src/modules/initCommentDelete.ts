@@ -13,10 +13,8 @@ export const initCommentDelete = () => {
 
   container.addEventListener("click", async (e) => {
     const target = e.target as HTMLElement;
-    const button = target?.closest<HTMLElement>(".js-delete-comment-button");
+    const button = target.closest<HTMLElement>(".js-delete-comment-button");
     if (!button) return;
-    e.preventDefault();
-
     const commentId = Number(button.dataset.commentId);
     if (!commentId) return;
 
