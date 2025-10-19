@@ -60,3 +60,15 @@ body {
 .menu-width-icon {
   @apply flex items-center p-3 text-sm capitalize transition-colors duration-300 transform hover:bg-brandGrayLight;
 }
+
+.task-status {
+  @apply w-fit min-w-16 py-1 px-3 bg-gray-600 text-center rounded-full uppercase text-white text-xs cursor-pointer;
+}
+
+.task-status[data-status="todo"] {
+  @apply bg-green-600;
+}
+
+.task-status[data-status="done"] {
+  @apply bg-purple-600;
+}

@@ -3,14 +3,16 @@
     = image_tag(@task.thumbnail, alt: '', class: 'w-full aspect-[3/1] object-cover') if @task.thumbnail&.attached?
     .p-6.flex.flex-col.gap-5
       .flex.justify-between.items-center
-        .flex.gap-1.items-center.py-2.px-3.h-fit.border.rounded-full.text-brandGrayDark.w-fit.text-xs
-          Board:
-          = link_to @board.name, board_path(@board.id), class: ''
-        - if user_signed_in? && @task.user == current_user
-          .ml-auto
-            = render 'commons/dropdown_actions',
-                     edit_path: edit_board_task_path(@board, @task),
-                     delete_path: board_task_path(@board, @task)
+        .flex.items-center.gap-2
+          %button.task-status#js-task-status-button{ "data-status": "#{@task.status}" }= @task.status
+          .flex.gap-1.items-center.py-1.px-3.h-fit.border.rounded-full.text-brandGrayDark.w-fit.text-xs
+            Board:
+            = link_to @board.name, board_path(@board.id), class: ''
+          - if user_signed_in? && @task.user == current_user
+            .ml-auto
+              = render 'commons/dropdown_actions',
+                       edit_path: edit_board_task_path(@board, @task),
+                       delete_path: board_task_path(@board, @task)
       .flex.flex-col.gap-1
         - if @task.due_date
           .text-brandGrayDark.text-xs

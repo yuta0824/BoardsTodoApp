@@ -3,10 +3,9 @@
   = image_tag task.thumbnail, class: 'w-full aspect-[3/1] object-cover' if task.thumbnail&.attached?
   .px-3.py-3.md:px-5.md:py-5
     .flex.items-center
-      %div
-        - if task.due_date
-          .text-xs.text-brandGrayDark 締切：#{task.due_date}
-        %p.text-xl.font-bold.text-brandBlack.mt-1= task.name
+      .space-y-2
+        .task-status{ data: { status: task.status } }= task.status
+        %p.text-xl.font-bold.text-brandBlack= task.name
       - if user_signed_in? && task.user == current_user
         .ml-auto
           = render 'commons/dropdown_actions',
