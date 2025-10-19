@@ -11,7 +11,7 @@
     - @todo_tasks.each do |task|
       = render 'commons/task-card', board: @board, task: task, show_read_more: false
     = link_to '＋ Add new Task', new_board_task_path(@board.id), class: 'new-card'
-  -if @done_tasks.any?
+  - if @done_tasks.any?
     .mt-8.space-y-4
       %h2.text-2xl.font-bold.bg-brandGrayLight.p-2.rounded
         %span.text-purple-600 ●
