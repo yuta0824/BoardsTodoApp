@@ -6,6 +6,7 @@
 #  description :text
 #  due_date    :date
 #  name        :string           not null
+#  status      :integer          default(0), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  board_id    :bigint           not null
@@ -22,10 +23,13 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Task < ApplicationRecord
-  has_one_attached :thumbnail
-  has_many :comments, dependent: :destroy
   belongs_to :user
   belongs_to :board
+  has_many :comments, dependent: :destroy
+  has_one_attached :thumbnail
+
+  enum status: { todo: 0, done: 1 }
+
   validates :name, presence: true
 
   def comments_count

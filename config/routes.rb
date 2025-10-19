@@ -6,4 +6,12 @@ Rails.application.routes.draw do
       resources :comments, shallow: true
     end
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :tasks, only: %i() do
+        resource :status, only: %i(update)
+      end
+    end
+  end
 end

@@ -22,7 +22,9 @@ class BoardsController < ApplicationController
 
   def show
     @board = Board.find(params[:id])
-    @tasks = @board.tasks
+    @tasks = @board.tasks.order(created_at: :asc)
+    @done_tasks = @tasks.where(status: 'done')
+    @todo_tasks = @tasks.where(status: 'todo')
   end
 
   def edit
