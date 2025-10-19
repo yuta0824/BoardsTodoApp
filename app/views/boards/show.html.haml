@@ -1,7 +1,20 @@
 .bg-white.shadow-lg.rounded-lg.max-w-2xl.p-3.rounded-lg.mx-auto.md:p-6
-  .font-bold.text-2xl= @board.name
-  .mt-1.text-brandGrayDark.text-lg= @board.description
-  .mt-4.space-y-4
-    - @tasks.each do |task|
+  .space-y-1
+    .task-status{ data: { status: 'done' } }
+      ⚪︎ #{@board.done_tasks_count} / #{@board.tasks_count}
+    .font-bold.text-2xl= @board.name
+    .mt-1.text-brandGrayDark.text-lg= @board.description
+  .mt-8.space-y-4
+    %h2.text-2xl.font-bold.bg-brandGrayLight.p-2.rounded
+      %span.text-green-600 ●
+      %span TODO
+    - @todo_tasks.each do |task|
       = render 'commons/task-card', board: @board, task: task, show_read_more: false
     = link_to '＋ Add new Task', new_board_task_path(@board.id), class: 'new-card'
+  -if @done_tasks.any?
+    .mt-8.space-y-4
+      %h2.text-2xl.font-bold.bg-brandGrayLight.p-2.rounded
+        %span.text-purple-600 ●
+        %span DONE
+      - @done_tasks.each do |task|
+        = render 'commons/task-card', board: @board, task: task, show_read_more: false

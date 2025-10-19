@@ -21,4 +21,12 @@ class Board < ApplicationRecord
   belongs_to :user
   has_many :tasks, dependent: :destroy
   validates :name, presence: true
+
+  def done_tasks_count
+    tasks.where(status: 'done').count
+  end
+
+  def tasks_count
+    tasks.count
+  end
 end
