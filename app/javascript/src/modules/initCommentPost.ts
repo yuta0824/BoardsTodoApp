@@ -1,4 +1,4 @@
-import { postComment } from "../api/comment/postComment";
+import { createCommentAndFetch } from "../api/comment/createCommentAndFetch";
 import { generateComments } from "../helpers/generateComments";
 
 export const initCommentPost = () => {
@@ -18,7 +18,7 @@ export const initCommentPost = () => {
     e.preventDefault();
     const content = field.value.trim();
     if (!content) return;
-    const data = await postComment(boardId, taskId, content);
+    const data = await createCommentAndFetch(boardId, taskId, content);
     field.value = "";
     generateComments(data);
   });

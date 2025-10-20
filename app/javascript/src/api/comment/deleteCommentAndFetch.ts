@@ -2,7 +2,7 @@ import axios from "axios";
 import { ensureCsrfToken, jsonRequest } from "../../utils/csrf";
 import { CommentResponse } from "../../types/CommentResponse";
 
-export const deleteComment = async (
+export const deleteCommentAndFetch = async (
   commentId: number
 ): Promise<CommentResponse[]> => {
   try {
@@ -13,7 +13,7 @@ export const deleteComment = async (
     );
     return response.data ?? [];
   } catch (error) {
-    console.error("deleteComment error:", error);
+    console.error("deleteCommentAndFetch error:", error);
     throw error;
   }
 };
