@@ -8,7 +8,7 @@ export const deleteComment = async (
   try {
     ensureCsrfToken();
     const response = await axios.delete<CommentResponse[]>(
-      `/comments/${commentId}`,
+      `/api/v1/comments/${commentId}`,
       jsonRequest()
     );
     return response.data ?? [];

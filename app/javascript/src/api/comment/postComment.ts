@@ -20,7 +20,7 @@ export const postComment = async (
 
     ensureCsrfToken();
     const response = await axios.post<CommentResponse[]>(
-      `/boards/${boardId}/tasks/${taskId}/comments`,
+      `/api/v1/boards/${boardId}/tasks/${taskId}/comments`,
       payload,
       jsonRequest()
     );
