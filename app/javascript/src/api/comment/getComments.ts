@@ -7,10 +7,11 @@ export const getComments = async (
 ): Promise<CommentResponse[]> => {
   try {
     const response = await axios.get<CommentResponse[]>(
-      `/boards/${boardId}/tasks/${taskId}/comments`
+      `/api/v1/boards/${boardId}/tasks/${taskId}/comments`
     );
-    return response.data ?? [];
+    return response.data;
   } catch (error) {
+    console.error("getComments error:", error);
     throw error;
   }
 };

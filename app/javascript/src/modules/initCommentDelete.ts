@@ -1,4 +1,4 @@
-import { deleteComment } from "../api/comment/deleteComment";
+import { deleteCommentAndFetch } from "../api/comment/deleteCommentAndFetch";
 import { generateComments } from "../helpers/generateComments";
 import {
   hasListenerAttached,
@@ -18,7 +18,7 @@ export const initCommentDelete = () => {
     const commentId = Number(button.dataset.commentId);
     if (!commentId) return;
 
-    const data = await deleteComment(commentId);
+    const data = await deleteCommentAndFetch(commentId);
     generateComments(data);
   });
 

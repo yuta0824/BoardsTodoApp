@@ -2,30 +2,31 @@ import axios from "axios";
 import { ensureCsrfToken, jsonRequest } from "../../utils/csrf";
 import { CommentResponse } from "../../types/CommentResponse";
 
-type PostCommentPayload = {
+type CreateCommentPayload = {
   comment: {
     content: string;
   };
 };
 
-export const postComment = async (
+export const createCommentAndFetch = async (
   boardId: number,
   taskId: number,
   content: string
 ): Promise<CommentResponse[]> => {
   try {
-    const payload: PostCommentPayload = {
+    const payload: CreateCommentPayload = {
       comment: { content },
     };
 
     ensureCsrfToken();
     const response = await axios.post<CommentResponse[]>(
-      `/boards/${boardId}/tasks/${taskId}/comments`,
+      `/api/v1/boards/${boardId}/tasks/${taskId}/comments`,
       payload,
       jsonRequest()
     );
-    return response.data ?? [];
+    return response.data;
   } catch (error) {
+    console.error("createCommentAndFetch error:", error);
     throw error;
   }
 };
