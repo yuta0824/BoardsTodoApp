@@ -9,7 +9,7 @@ export const getComments = async (
     const response = await axios.get<CommentResponse[]>(
       `/api/v1/boards/${boardId}/tasks/${taskId}/comments`
     );
-    return response.data ?? [];
+    return response.data;
   } catch (error) {
     console.error("getComments error:", error);
     throw error;

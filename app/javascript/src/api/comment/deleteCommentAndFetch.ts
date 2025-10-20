@@ -11,7 +11,7 @@ export const deleteCommentAndFetch = async (
       `/api/v1/comments/${commentId}`,
       jsonRequest()
     );
-    return response.data ?? [];
+    return response.data;
   } catch (error) {
     console.error("deleteCommentAndFetch error:", error);
     throw error;

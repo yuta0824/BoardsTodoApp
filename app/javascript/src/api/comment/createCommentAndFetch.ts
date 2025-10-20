@@ -24,7 +24,7 @@ export const createCommentAndFetch = async (
       payload,
       jsonRequest()
     );
-    return response.data ?? [];
+    return response.data;
   } catch (error) {
     console.error("createCommentAndFetch error:", error);
     throw error;
