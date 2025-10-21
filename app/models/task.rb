@@ -26,6 +26,10 @@ class Task < ApplicationRecord
   belongs_to :user
   belongs_to :board
   has_many :comments, dependent: :destroy
+  has_many :successor_dependencies, foreign_key: "predecessor_id", class_name: "TaskDependency", dependent: :destroy
+  has_many :successors, through: :successor_dependencies, source: :successor
+  has_many :predecessor_dependencies, foreign_key: "successor_id", class_name: "TaskDependency", dependent: :destroy
+  has_many :predecessors, through: :predecessor_dependencies, source: :predecessor
   has_one_attached :thumbnail
 
   enum status: { todo: 0, done: 1 }
@@ -38,5 +42,21 @@ class Task < ApplicationRecord
 
   def comment_users
     User.where(id: comments.select(:user_id).distinct)
+  end
+
+  def add_successor!(task)
+    successor_dependencies.create!(successor_id: task.id)
+  end
+
+  def add_predecessor!(task)
+    predecessor_dependencies.create!(predecessor_id: task.id)
+  end
+
+  def remove_successor!(task)
+    successor_dependencies.find_by!(successor_id: task.id).destroy!
+  end
+
+  def remove_predecessor!(task)
+    predecessor_dependencies.find_by!(predecessor_id: task.id).destroy!
   end
 end
