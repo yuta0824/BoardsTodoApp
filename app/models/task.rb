@@ -36,6 +36,10 @@ class Task < ApplicationRecord
 
   validates :name, presence: true
 
+  def sibling_tasks
+    board.tasks.where.not(id: id)
+  end
+
   def comments_count
     self.comments.count
   end
