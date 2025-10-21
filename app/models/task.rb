@@ -6,7 +6,7 @@
 #  description :text
 #  due_date    :date
 #  name        :string           not null
-#  status      :integer          default(0), not null
+#  status      :integer          default("todo"), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  board_id    :bigint           not null

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_19_071505) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_21_121728) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_19_071505) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "task_dependencies", force: :cascade do |t|
+    t.bigint "predecessor_id", null: false
+    t.bigint "successor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["predecessor_id", "successor_id"], name: "index_task_deps_on_predecessor_and_successor", unique: true
+    t.index ["predecessor_id"], name: "index_task_dependencies_on_predecessor_id"
+    t.index ["successor_id"], name: "index_task_dependencies_on_successor_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "board_id", null: false
@@ -92,6 +102,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_19_071505) do
   add_foreign_key "boards", "users"
   add_foreign_key "comments", "tasks"
   add_foreign_key "comments", "users"
+  add_foreign_key "task_dependencies", "tasks", column: "predecessor_id"
+  add_foreign_key "task_dependencies", "tasks", column: "successor_id"
   add_foreign_key "tasks", "boards"
   add_foreign_key "tasks", "users"
 end
