@@ -15,13 +15,14 @@
     %label.label{ for: 'task_due_date' }
       Due Date
     = f.date_field :due_date, class: 'input'
-  .w-full.mt-4
-    %label.label{ for: 'task_predecessor_ids' }
-      Dependencies
-    .mt-2.input.space-y-1
-      = f.collection_check_boxes :predecessor_ids, task.sibling_tasks, :id, :name do |b|
-        .flex.items-center
-          = b.check_box(class: 'mr-1')
-          = b.label(class: 'cursor-pointer')
+  - unless task.predecessor?
+    .w-full.mt-4
+      %label.label{ for: 'task_predecessor_ids' }
+        Dependencies
+      .mt-2.input.space-y-1
+        = f.collection_check_boxes :predecessor_ids, task.selectable_predecessors, :id, :name do |b|
+          .flex.items-center
+            = b.check_box(class: 'mr-1')
+            = b.label(class: 'cursor-pointer')
   .flex.items-center.justify-center.mt-4
     = f.submit 'Save', class: 'submit'

@@ -36,8 +36,10 @@ class Task < ApplicationRecord
 
   validates :name, presence: true
 
-  def sibling_tasks
-    board.tasks.where.not(id: id)
+  def selectable_predecessors
+    board.tasks
+      .where.not(id: id)
+      .where.not(status: :done)
   end
 
   def comments_count
@@ -62,5 +64,22 @@ class Task < ApplicationRecord
 
   def remove_predecessor!(task)
     predecessor_dependencies.find_by!(predecessor_id: task.id).destroy!
+  end
+
+  def has_predecessors_todo?
+    predecessors.where(status: :todo).exists?
+  end
+
+  def has_successors_todo?
+    successors.where(status: :todo).exists?
+  end
+
+  def display_status
+    return 'pending' if has_predecessors_todo?
+    status
+  end
+
+  def predecessor?
+    successor_dependencies.exists?
   end
 end

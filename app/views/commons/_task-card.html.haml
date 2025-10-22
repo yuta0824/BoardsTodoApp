@@ -4,7 +4,7 @@
   .px-3.py-3.md:px-5.md:py-5
     .flex.items-center
       .space-y-2
-        .task-status{ data: { status: task.status } }= task.status
+        .task-status{ data: { status: task.display_status } }= task.display_status
         %p.text-xl.font-bold.text-brandBlack= task.name
       - if user_signed_in? && task.user == current_user
         .ml-auto

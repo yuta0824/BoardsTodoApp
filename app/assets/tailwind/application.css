@@ -62,13 +62,13 @@ body {
 }
 
 .task-status {
-  @apply w-fit min-w-16 py-1 px-3 bg-gray-600 text-center rounded-full uppercase text-white text-xs cursor-pointer;
+  @apply w-fit min-w-16 py-1 px-3 bg-gray-600 text-center rounded-full uppercase text-white text-xs;
 }
 
 .task-status[data-status="todo"] {
-  @apply bg-green-600;
+  @apply bg-green-600 cursor-pointer;
 }
 
 .task-status[data-status="done"] {
-  @apply bg-purple-600;
+  @apply bg-purple-600 cursor-pointer;
 }
