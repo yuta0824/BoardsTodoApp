@@ -15,7 +15,7 @@
     %label.label{ for: 'task_due_date' }
       Due Date
     = f.date_field :due_date, class: 'input'
-  - unless task.predecessor?
+  - unless task.new_record?
     .w-full.mt-4
       %label.label{ for: 'task_predecessor_ids' }
         Dependencies
