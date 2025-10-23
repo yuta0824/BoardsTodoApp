@@ -55,22 +55,6 @@ class Task < ApplicationRecord
     User.where(id: comments.select(:user_id).distinct)
   end
 
-  def add_successor!(task)
-    successor_dependencies.create!(successor_id: task.id)
-  end
-
-  def add_predecessor!(task)
-    predecessor_dependencies.create!(predecessor_id: task.id)
-  end
-
-  def remove_successor!(task)
-    successor_dependencies.find_by!(successor_id: task.id).destroy!
-  end
-
-  def remove_predecessor!(task)
-    predecessor_dependencies.find_by!(predecessor_id: task.id).destroy!
-  end
-
   def has_predecessors_todo?
     if predecessors.loaded?
       predecessors.any?(&:todo?)
