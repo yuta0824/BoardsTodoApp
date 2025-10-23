@@ -36,6 +36,7 @@ class Task < ApplicationRecord
 
   validates :name, presence: true
 
+  #successorsを持つ場合、既存のpredecessorのみ表示
   def selectable_predecessors
     scope = board.tasks
                  .where.not(id: id)
