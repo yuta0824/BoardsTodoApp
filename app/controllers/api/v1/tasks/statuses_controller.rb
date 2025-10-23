@@ -3,8 +3,14 @@ class Api::V1::Tasks::StatusesController < ApplicationController
 
   def update
     task = Task.find(params[:task_id])
+
+    if task.has_predecessors_todo?
+      render json: { error: 'Blocked by pending predecessors' }, status: :unprocessable_entity
+      return
+    end
+
     task.update!(task_params)
-    render json: {status: task.status}
+    render json: { status: task.status }
   end
 
   private
