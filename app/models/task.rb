@@ -26,9 +26,9 @@ class Task < ApplicationRecord
   belongs_to :user
   belongs_to :board
   has_many :comments, dependent: :destroy
-  has_many :successor_dependencies, foreign_key: "predecessor_id", class_name: "TaskDependency", dependent: :destroy
+  has_many :successor_dependencies, foreign_key: 'predecessor_id', class_name: 'TaskDependency', dependent: :destroy
   has_many :successors, through: :successor_dependencies, source: :successor
-  has_many :predecessor_dependencies, foreign_key: "successor_id", class_name: "TaskDependency", dependent: :destroy
+  has_many :predecessor_dependencies, foreign_key: 'successor_id', class_name: 'TaskDependency', dependent: :destroy
   has_many :predecessors, through: :predecessor_dependencies, source: :predecessor
   has_one_attached :thumbnail
 
