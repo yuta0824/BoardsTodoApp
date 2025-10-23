@@ -72,11 +72,19 @@ class Task < ApplicationRecord
   end
 
   def has_predecessors_todo?
-    predecessors.where(status: :todo).exists?
+    if predecessors.loaded?
+      predecessors.any?(&:todo?)
+    else
+      predecessors.where(status: :todo).exists?
+    end
   end
 
   def has_successors_todo?
-    successors.where(status: :todo).exists?
+    if successors.loaded?
+      successors.any?(&:todo?)
+    else
+      successors.where(status: :todo).exists?
+    end
   end
 
   def display_status
