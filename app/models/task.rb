@@ -37,9 +37,13 @@ class Task < ApplicationRecord
   validates :name, presence: true
 
   def selectable_predecessors
-    board.tasks
-      .where.not(id: id)
-      .where.not(status: :done)
+    scope = board.tasks
+                 .where.not(id: id)
+                 .where.not(status: :done)
+
+    return scope unless successors.exists?
+
+    predecessors.merge(scope)
   end
 
   def comments_count
