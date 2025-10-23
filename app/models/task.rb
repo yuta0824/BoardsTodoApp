@@ -72,6 +72,7 @@ class Task < ApplicationRecord
   end
 
   def display_status
+    return 'done' if done?
     return 'pending' if has_predecessors_todo?
     status
   end
