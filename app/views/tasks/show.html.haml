@@ -1,12 +1,12 @@
 .bg-white.shadow-lg.rounded-lg.max-w-2xl.p-3.space-y-10.rounded-lg.mx-auto.md:p-6{ data: { task_id: @task.id, board_id: @task.board_id } }
   .space-y-10.relative.z-20
     .absolute.left-4.w-1.h-full.bg-brandGrayLight.-z-10
-    - if @task.has_predecessors_todo?
+    - if @task.predecessors.any?
       .p-4.border.border-red-300.bg-red-50.rounded-lg.space-y-3
         %h2.font-bold.text-2xl Predecessor Tasks
         %p.text-sm 以下は、このタスクの先行タスクです。
         .flex.flex-col.gap-2.w-fit
-          - @task.predecessors.where(status: 'todo').each do |predecessor|
+          - @task.predecessors.each do |predecessor|
             = link_to board_task_path(@board, predecessor), class: 'flex items-center gap-2' do
               %span.task-status{ "data-status": "#{predecessor.display_status}" }= predecessor.display_status
               %span.text-sm= predecessor.name
