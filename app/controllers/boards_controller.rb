@@ -24,7 +24,7 @@ class BoardsController < ApplicationController
     @board = Board.find(params[:id])
     @tasks = @board.tasks.includes(:predecessors).order(created_at: :asc)
     @done_tasks, todo_tasks = @tasks.partition(&:done?)
-    @todo_tasks, @pending_tasks = todo_tasks.partition { |task| !task.has_predecessors_todo? }
+    @todo_tasks, @pending_tasks = todo_tasks.partition { |task| !task.pending? }
   end
 
   def edit
