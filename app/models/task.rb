@@ -26,15 +26,22 @@ class Task < ApplicationRecord
   belongs_to :user
   belongs_to :board
   has_many :comments, dependent: :destroy
-  has_many :successor_dependencies, foreign_key: "predecessor_id", class_name: "TaskDependency", dependent: :destroy
+  has_many :successor_dependencies, foreign_key: 'predecessor_id', class_name: 'TaskDependency', dependent: :destroy
   has_many :successors, through: :successor_dependencies, source: :successor
-  has_many :predecessor_dependencies, foreign_key: "successor_id", class_name: "TaskDependency", dependent: :destroy
+  has_many :predecessor_dependencies, foreign_key: 'successor_id', class_name: 'TaskDependency', dependent: :destroy
   has_many :predecessors, through: :predecessor_dependencies, source: :predecessor
   has_one_attached :thumbnail
 
   enum status: { todo: 0, done: 1 }
 
   validates :name, presence: true
+
+  #successorsを持つ場合、既存のpredecessorのみ選択可
+  def selectable_predecessors
+    scope = board.tasks.where.not(id: id)
+    return scope unless successors.exists?
+    predecessors.merge(scope)
+  end
 
   def comments_count
     self.comments.count
@@ -44,19 +51,25 @@ class Task < ApplicationRecord
     User.where(id: comments.select(:user_id).distinct)
   end
 
-  def add_successor!(task)
-    successor_dependencies.create!(successor_id: task.id)
+  def has_predecessors_todo?
+    if predecessors.loaded?
+      predecessors.any?(&:todo?)
+    else
+      predecessors.where(status: :todo).exists?
+    end
   end
 
-  def add_predecessor!(task)
-    predecessor_dependencies.create!(predecessor_id: task.id)
+  def pending?
+    todo? && has_predecessors_todo?
   end
 
-  def remove_successor!(task)
-    successor_dependencies.find_by!(successor_id: task.id).destroy!
+  def display_status
+    return 'done' if done?
+    return 'pending' if pending?
+    status
   end
 
-  def remove_predecessor!(task)
-    predecessor_dependencies.find_by!(predecessor_id: task.id).destroy!
+  def predecessor?
+    successor_dependencies.exists?
   end
 end

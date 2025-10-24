@@ -14,6 +14,7 @@ export const initTaskStatus = async () => {
 
   button.addEventListener("click", async () => {
     const currentStatus = button.dataset.status;
+    if (currentStatus === "pending") return;
     const nextStatus = currentStatus === "todo" ? "done" : "todo";
     const { status } = await postTaskStatus(taskId, nextStatus);
     updateStatus(status, button);

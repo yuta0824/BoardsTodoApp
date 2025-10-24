@@ -1,26 +1,46 @@
-.bg-white.shadow-lg.rounded-lg.max-w-2xl.p-3.rounded-lg.mx-auto.md:p-6{ data: { task_id: @task.id, board_id: @task.board_id } }
-  .bg-white.shadow-lg.rounded-lg.container.p-0.relative.z-2.overflow-hidden.border.border-brandGray
-    = image_tag(@task.thumbnail, alt: '', class: 'w-full aspect-[3/1] object-cover') if @task.thumbnail&.attached?
-    .p-6.flex.flex-col.gap-5
-      .flex.justify-between.items-center
-        .flex.items-center.gap-2
-          %button.task-status#js-task-status-button{ "data-status": "#{@task.status}" }= @task.status
-          .flex.gap-1.items-center.py-1.px-3.h-fit.border.rounded-full.text-brandGrayDark.w-fit.text-xs
-            Board:
-            = link_to @board.name, board_path(@board.id), class: ''
-          - if user_signed_in? && @task.user == current_user
-            .ml-auto
-              = render 'commons/dropdown_actions',
-                       edit_path: edit_board_task_path(@board, @task),
-                       delete_path: board_task_path(@board, @task)
-      .flex.flex-col.gap-1
-        - if @task.due_date
-          .text-brandGrayDark.text-xs
-            締切：
-            = @task.due_date
-        %h2.font-bold.text-lg= @task.name
-      .text-brandGrayDark= @task.description
-  .mt-10.space-y-5
+.bg-white.shadow-lg.rounded-lg.max-w-2xl.p-3.space-y-10.rounded-lg.mx-auto.md:p-6{ data: { task_id: @task.id, board_id: @task.board_id } }
+  .space-y-10.relative.z-20
+    .absolute.left-4.w-1.h-full.bg-brandGrayLight.-z-10
+    - if @task.predecessors.any?
+      .p-4.border.border-red-300.bg-red-50.rounded-lg.space-y-3
+        %h2.font-bold.text-2xl Predecessor Tasks
+        %p.text-sm 以下は、このタスクの先行タスクです。
+        .flex.flex-col.gap-2.w-fit
+          - @task.predecessors.each do |predecessor|
+            = link_to board_task_path(@board, predecessor), class: 'flex items-center gap-2' do
+              %span.task-status{ "data-status": "#{predecessor.display_status}" }= predecessor.display_status
+              %span.text-sm= predecessor.name
+    .bg-white.shadow-lg.rounded-lg.container.p-0.relative.z-2.overflow-hidden.border.border-brandGray
+      = image_tag(@task.thumbnail, alt: '', class: 'w-full aspect-[3/1] object-cover') if @task.thumbnail&.attached?
+      .p-6.flex.flex-col.gap-5
+        .flex.justify-between.items-center
+          .flex.items-center.gap-2.w-full
+            %button.task-status#js-task-status-button{ "data-status": "#{@task.display_status}" }= @task.display_status
+            .flex.gap-1.items-center.py-1.px-3.h-fit.border.rounded-full.text-brandGrayDark.w-fit.text-xs
+              Board:
+              = link_to @board.name, board_path(@board.id), class: ''
+            - if user_signed_in? && @task.user == current_user
+              .ml-auto
+                = render 'commons/dropdown_actions',
+                         edit_path: edit_board_task_path(@board, @task),
+                         delete_path: board_task_path(@board, @task)
+        .flex.flex-col.gap-1
+          - if @task.due_date
+            .text-brandGrayDark.text-xs
+              締切：
+              = @task.due_date
+          %h2.font-bold.text-lg= @task.name
+        .text-brandGrayDark= @task.description
+    - if @task.successors.any?
+      .p-4.border.border-blue-300.bg-blue-50.rounded-lg.space-y-3
+        %h2.font-bold.text-2xl Successors Tasks
+        %p.text-sm 以下は、このタスクの後続タスクです。
+        .flex.flex-col.gap-2.w-fit
+          - @task.successors.each do |successor|
+            = link_to board_task_path(@board, successor), class: 'flex items-center gap-2' do
+              %span.task-status{ "data-status": "#{successor.display_status}" }= successor.display_status
+              %span.text-sm= successor.name
+  .space-y-5
     %h2.font-bold.text-2xl Comment
     .space-y-5#js-comment-container
     = render('commons/comment-form') if user_signed_in?

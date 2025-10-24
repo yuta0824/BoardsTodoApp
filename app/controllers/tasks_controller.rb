@@ -4,7 +4,7 @@ class TasksController < ApplicationController
     before_action :set_task_and_board, only: [:edit, :update, :destroy]
 
     def new
-        @task = current_user.tasks.build
+        @task = current_user.tasks.build(board: @board)
     end
 
     def create
@@ -42,7 +42,7 @@ class TasksController < ApplicationController
     private
 
     def task_params
-        params.require(:task).permit(:name, :description, :due_date, :thumbnail)
+        params.require(:task).permit(:name, :description, :due_date, :thumbnail, predecessor_ids: [])
     end
 
     def set_board
