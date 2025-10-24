@@ -36,14 +36,10 @@ class Task < ApplicationRecord
 
   validates :name, presence: true
 
-  #successorsを持つ場合、既存のpredecessorのみ表示
+  #successorsを持つ場合、既存のpredecessorのみ選択可
   def selectable_predecessors
-    scope = board.tasks
-                 .where.not(id: id)
-                 .where.not(status: :done)
-
+    scope = board.tasks.where.not(id: id)
     return scope unless successors.exists?
-
     predecessors.merge(scope)
   end
 
