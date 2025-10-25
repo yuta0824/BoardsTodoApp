@@ -39,6 +39,7 @@
 !/app/assets/builds/.keep
 
 # Ignore Private files
+.claude/
 .private/
 .vscode/settings.json
 
