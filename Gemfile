@@ -86,6 +86,9 @@ group :development do
 
   # Generation of dummy data [https://github.com/faker-ruby/faker]
   gem 'faker'
+
+  # Test fixtures replacement with factories [https://github.com/thoughtbot/factory_bot_rails]
+  gem "factory_bot_rails"
 end
 
 group :test do
