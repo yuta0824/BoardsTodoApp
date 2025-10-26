@@ -74,7 +74,7 @@ group :development, :test do
   gem 'faker'
 
   # Test fixtures replacement with factories [https://github.com/thoughtbot/factory_bot_rails]
-  gem "factory_bot_rails"
+  gem 'factory_bot_rails'
 end
 
 group :development do
