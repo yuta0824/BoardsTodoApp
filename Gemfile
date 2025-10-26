@@ -69,6 +69,12 @@ group :development, :test do
 
   # Use RSpec for testing [https://github.com/rspec/rspec-rails]
   gem 'rspec-rails'
+
+  # Generation of dummy data [https://github.com/faker-ruby/faker]
+  gem 'faker'
+
+  # Test fixtures replacement with factories [https://github.com/thoughtbot/factory_bot_rails]
+  gem "factory_bot_rails"
 end
 
 group :development do
@@ -83,12 +89,6 @@ group :development do
 
   # HAML files clean and readable [https://github.com/sds/haml-lint]
   gem 'haml_lint', require: false
-
-  # Generation of dummy data [https://github.com/faker-ruby/faker]
-  gem 'faker'
-
-  # Test fixtures replacement with factories [https://github.com/thoughtbot/factory_bot_rails]
-  gem "factory_bot_rails"
 end
 
 group :test do
