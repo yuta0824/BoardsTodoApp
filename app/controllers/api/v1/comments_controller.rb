@@ -1,5 +1,4 @@
-class Api::V1::CommentsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :destroy]
+class Api::V1::CommentsController < Api::V1::ApplicationController
   before_action :set_board_and_task, only: [:index, :create]
 
   def index

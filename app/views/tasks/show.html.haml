@@ -40,7 +40,8 @@
             = link_to board_task_path(@board, successor), class: 'flex items-center gap-2' do
               %span.task-status{ "data-status": "#{successor.display_status}" }= successor.display_status
               %span.text-sm= successor.name
-  .space-y-5
-    %h2.font-bold.text-2xl Comment
-    .space-y-5#js-comment-container
-    = render('commons/comment-form') if user_signed_in?
+  - if user_signed_in?
+    .space-y-5
+      %h2.font-bold.text-2xl Comment
+      .space-y-5#js-comment-container
+      = render('commons/comment-form')

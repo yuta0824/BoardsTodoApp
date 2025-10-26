@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :tasks
   end
 
-  namespace :api do
+  namespace :api, defaults: { format: 'json'} do
     namespace :v1 do
       resources :boards, only: %i() do
         resources :tasks, only: %i() do

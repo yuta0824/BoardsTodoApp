@@ -1,6 +1,4 @@
-class Api::V1::Tasks::StatusesController < ApplicationController
-  before_action :authenticate_user!
-
+class Api::V1::Tasks::StatusesController < Api::V1::ApplicationController
   def update
     task = Task.find(params[:task_id])
 
