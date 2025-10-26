@@ -1,13 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Board, type: :model do
-  let!(:user) do
-    User.create!(
-      name: Faker::Name.name,
-      email: Faker::Internet.email,
-      password: Faker::Lorem.characters(number: 10),
-    )
-  end
+  let!(:user) { create(:user, email: "test@test.com") }
 
   context 'タイトルが入力されている場合' do
     let!(:board) do
