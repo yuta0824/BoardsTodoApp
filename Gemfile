@@ -66,6 +66,9 @@ group :development, :test do
 
   # Use .env files [https://github.com/bkeepers/dotenv]
   gem 'dotenv-rails'
+
+  # Use RSpec for testing [https://github.com/rspec/rspec-rails]
+  gem 'rspec-rails'
 end
 
 group :development do
