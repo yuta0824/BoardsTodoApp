@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe Board, type: :model do
   it "タイトルが入力されていれば、ボードを保存できる" do
     user = User.create!(
-      name: "山田太郎",
-      email: "yamada@gmail.com",
-      password: "password123",
+      name: Faker::Name.name,
+      email: Faker::Internet.email,
+      password: Faker::Lorem.characters(number: 10),
     )
     board = user.boards.build(
-      name: "hohohoho",
-      description: "ddddddddd"
+      name: Faker::Lorem.characters(number: 10),
+      description: Faker::Lorem.characters(number: 300)
     )
 
     expect(board).to be_valid

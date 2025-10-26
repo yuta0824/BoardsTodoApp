@@ -83,6 +83,9 @@ group :development do
 
   # HAML files clean and readable [https://github.com/sds/haml-lint]
   gem 'haml_lint', require: false
+
+  # Generation of dummy data [https://github.com/faker-ruby/faker]
+  gem 'faker'
 end
 
 group :test do
