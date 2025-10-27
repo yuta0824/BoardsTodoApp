@@ -10,4 +10,20 @@ RSpec.describe "Boards", type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe "POST /boards" do
+    context "ログインしている場合" do
+      before do
+        sign_in user
+      end
+
+      it "ボードが保存される" do
+        board_params = attributes_for(:board)
+        post boards_path, params: {board: board_params}
+        expect(response).to have_http_status(302)
+        expect(Board.last.name).to eq(board_params[:name])
+        expect(Board.last.description).to eq(board_params[:description])
+      end
+    end
+  end
 end
