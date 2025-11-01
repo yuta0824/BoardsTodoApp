@@ -11,4 +11,12 @@ RSpec.describe 'Board', type: :system do
       expect(page).to have_selector("[data-id='#{board.id}']", text: board.name)
     end
   end
+
+  it 'ボードの詳細が表示される' do
+    visit root_path
+    board = boards.first
+    board_card = find("[data-id='#{board.id}'] a")
+    board_card.click
+    expect(page).to have_selector("[data-id='#{board.id}']", text: board.name)
+  end
 end
