@@ -1,0 +1,140 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/boards/{board_id}/tasks/{task_id}/comments":
+    parameters:
+    - name: board_id
+      in: path
+      description: Board ID
+      required: true
+      schema:
+        type: integer
+    - name: task_id
+      in: path
+      description: Task ID
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: コメント一覧を表示する
+      tags:
+      - Comments
+      responses:
+        '200':
+          description: コメント一覧を取得
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    content:
+                      type: string
+                    commenterName:
+                      type: string
+                    commenterAvatar:
+                      type: string
+                    isOwner:
+                      type: boolean
+                  required:
+                  - id
+                  - content
+                  - commenterName
+                  - commenterAvatar
+                  - isOwner
+    post:
+      summary: コメントを作成する
+      tags:
+      - Comments
+      parameters: []
+      responses:
+        '200':
+          description: コメントが作成される
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    content:
+                      type: string
+                    commenterName:
+                      type: string
+                    commenterAvatar:
+                      type: string
+                    isOwner:
+                      type: boolean
+                  required:
+                  - id
+                  - content
+                  - commenterName
+                  - commenterAvatar
+                  - isOwner
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: object
+                  properties:
+                    content:
+                      type: string
+                  required:
+                  - content
+              required:
+              - comment
+        required: true
+  "/api/v1/comments/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: Comment ID
+      required: true
+      schema:
+        type: integer
+    delete:
+      summary: コメントを削除する
+      tags:
+      - Comments
+      responses:
+        '200':
+          description: コメントが削除される
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    content:
+                      type: string
+                    commenterName:
+                      type: string
+                    commenterAvatar:
+                      type: string
+                    isOwner:
+                      type: boolean
+                  required:
+                  - id
+                  - content
+                  - commenterName
+                  - commenterAvatar
+                  - isOwner
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com

@@ -6,6 +6,10 @@
   "browserslist": [
     "defaults"
   ],
+  "scripts": {
+    "openapi:generate": "openapi-typescript swagger/v1/swagger.yaml -o app/javascript/src/types/generated/openapi.d.ts",
+    "typecheck": "tsc --noEmit"
+  },
   "dependencies": {
     "@babel/preset-typescript": "^7.27.1",
     "@hotwired/turbo-rails": "^8.0.18",
@@ -28,6 +32,8 @@
     "webpack-subresource-integrity": "^5.1.0"
   },
   "devDependencies": {
+    "openapi-typescript": "^7.10.1",
+    "typescript": "^5.9.3",
     "webpack-dev-server": "^5.2.2"
   }
 }

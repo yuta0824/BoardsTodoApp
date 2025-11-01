@@ -6,7 +6,7 @@ export const generateComments = (data: CommentResponse[]) => {
   if (!container) return;
   container.innerHTML = data
     .map((comment) => {
-      const deleteAction = comment.is_owner
+      const deleteAction = comment.isOwner
         ? `<button class="text-danger text-xs hover:underline js-delete-comment-button" data-comment-id="${comment.id}">削除</button>`
         : "";
 
@@ -16,11 +16,11 @@ export const generateComments = (data: CommentResponse[]) => {
             <div class="flex gap-2 items-center">
               <img
                 class="flex-shrink-0 size-8 rounded-full"
-                src="${escapeHtml(comment.commenter_avatar)}"
-                alt="${escapeHtml(comment.commenter_name)} avatar"
+                src="${escapeHtml(comment.commenterAvatar)}"
+                alt="${escapeHtml(comment.commenterName)} avatar"
               />
               <p class="font-bold text-brandBlack">
-                ${escapeHtml(comment.commenter_name)}
+                ${escapeHtml(comment.commenterName)}
               </p>
             </div>
             <div class="mt-4">${escapeHtml(comment.content)}</div>

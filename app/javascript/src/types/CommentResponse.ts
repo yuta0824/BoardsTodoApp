@@ -1,7 +1,6 @@
-export type CommentResponse = {
-  id: number;
-  content: string;
-  commenter_name: string;
-  commenter_avatar: string;
-  is_owner: boolean;
-};
+import type { paths } from './generated/openapi';
+
+type CommentsIndexResponse =
+  paths['/api/v1/boards/{board_id}/tasks/{task_id}/comments']['get']['responses']['200']['content']['application/json'];
+
+export type CommentResponse = CommentsIndexResponse[number];
