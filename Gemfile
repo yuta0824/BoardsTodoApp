@@ -48,6 +48,9 @@ gem 'shakapacker', '= 9.2'
 # Serializer [https://github.com/rails-api/active_model_serializers]
 gem 'active_model_serializers'
 
+# rswag [https://github.com/rswag/rswag]
+gem 'rswag'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[ mri windows ], require: 'debug/prelude'
