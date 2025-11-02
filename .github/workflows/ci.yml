@@ -42,6 +42,14 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install JS dependencies
+        run: npm ci
+      - name: Compile JS bundles
+        run: bundle exec rails shakapacker:compile
       - name: Build Tailwind CSS
         run: bundle exec rails tailwindcss:build
       - name: Prepare database
@@ -72,6 +80,14 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install JS dependencies
+        run: npm ci
+      - name: Compile JS bundles
+        run: bundle exec rails shakapacker:compile
       - name: Build Tailwind CSS
         run: bundle exec rails tailwindcss:build
       - name: Prepare database
